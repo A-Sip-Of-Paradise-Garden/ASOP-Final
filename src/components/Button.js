@@ -1,5 +1,5 @@
 import React from "react";
-import { colors } from "../Styles/generalStyles";
+import { colors } from "../constants/generalStyles";
 
 const Button = ({ color, type, children, className, ...props }) => {
   return (

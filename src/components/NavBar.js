@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { colors } from "../Styles/generalStyles";
+import { colors } from "../constants/generalStyles";
 import Button from "./Button";
 import { UserAuth } from "../context/AuthContext";
 
