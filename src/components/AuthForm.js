@@ -1,59 +1,28 @@
-import { auth, googleProvider } from "../config/firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import { useState } from "react";
 import Button from "./Button";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { UserAuth } from "../context/AuthContext";
 
 const AuthForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const buttonText = pathname === "/login" ? "Login" : "Signup";
+  const { signup, login, logInWithGoogle } = UserAuth();
+  const routeName = pathname === "/login" ? "Login" : "Signup";
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (pathname === "/login") {
-      logIn();
+      login(email, password);
     } else {
-      signUp();
-    };
-  };
-
-  const logIn = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
-    } catch (err) {
-      alert(err.message);
-    }
-  };
-
-  const signUp = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/");
-    } catch (err) {
-      alert(err.message);
-    }
-  };
-
-  const logInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      navigate("/");
-    } catch (err) {
-      alert(err.message);
+      signup(email, password);
     }
   };
 
   return (
-    <div className="flex flex-col w-full max-w-sm mx-auto gap-4">
+    <div className="flex flex-col items-center w-full max-w-sm mx-auto gap-4">
+      <h1 className="text-2xl font-bold">{routeName}</h1>
       <form
         className="flex flex-col w-full items-center gap-4"
         onSubmit={onSubmitHandler}
@@ -73,15 +42,16 @@ const AuthForm = () => {
           <input
             type="password"
             id="password"
-            className="border-2 rounded py-3"
+            className="border-2 rounded py-2 px-2"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <Button className="w-full py-2" type="submit">
-          {buttonText}
+          {routeName}
         </Button>
       </form>
-      <hr className="border" />
+      <hr className="border w-full" />
       <Button
         className="w-full py-2 border-2"
         color="white"
