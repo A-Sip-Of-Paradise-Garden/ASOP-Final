@@ -4,4 +4,5 @@ export const colors = {
   blue: "bg-blue-500 hover:bg-blue-600",
   hollow: "bg-transparent hover:bg-emerald-500 border border-emerald-500",
   red: "bg-red-500 hover:bg-red-600",
+  white: "bg-white hover:bg-gray-100",
 };

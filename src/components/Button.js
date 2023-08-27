@@ -1,12 +1,12 @@
 import React from "react";
 import { colors } from "../Styles/generalStyles";
 
-const Button = ({ color, type, children, ...props }) => {
+const Button = ({ color, type, children, className, ...props }) => {
   return (
     <button
       className={`${
         color ? colors[color] : colors["emerald"]
-      } py-1 px-2 rounded`}
+      } flex items-center justify-center gap-2 py-1 px-2 rounded ${className}`}
       type={type ? type : "button"}
       {...props}
     >
