@@ -13,7 +13,7 @@ const App = () => {
     <AuthContextProvider>
       <div className="w-full h-full">
         <NavBar />
-        <div className="container mx-auto text-black">
+        <div className="container mx-auto text-black px-4">
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route
