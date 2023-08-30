@@ -5,4 +5,5 @@ export const colors = {
   hollow: "bg-transparent hover:bg-emerald-500 border border-emerald-500",
   red: "bg-red-500 hover:bg-red-600",
   white: "bg-white hover:bg-gray-100",
+  greenUnderline: "hover:underline decoration-emerald-500 underline-offset-4"
 };
