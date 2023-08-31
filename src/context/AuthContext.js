@@ -6,14 +6,21 @@ import {
   signInWithPopup,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth, googleProvider } from "../config/firebase";
+import {
+  collection,
+  addDoc,
+} from "firebase/firestore";
+import { ref, uploadBytes } from "firebase/storage";
+import { db, storage, auth, googleProvider } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
   const navigate = useNavigate();
+  const userProfilesCollection = collection(db, "user-profiles");
 
   const signup = async (email, password) => {
     try {
@@ -52,6 +59,24 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const createUserProfile = async (newUserProfileData, profilePicture) => {
+    try {
+      if (!profilePicture) throw new Error("Please upload an image file");
+      const fileLocation = `profilePictures/${new Date().getTime()}_${profilePicture.name}`;
+      const filesFolderRef = ref(storage, fileLocation);
+      await uploadBytes(filesFolderRef, profilePicture);
+      await addDoc(userProfilesCollection, {
+        ...newUserProfileData,
+        profilePicture: fileLocation,
+        uid: user.uid,
+      });
+      setUserProfile(newUserProfileData);
+      navigate("/");
+    } catch(err) {
+      alert(err.message);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -63,7 +88,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ signup, user, logout, login, logInWithGoogle }}
+      value={{ signup, user, logout, login, logInWithGoogle, createUserProfile, userProfile }}
     >
       {children}
     </UserContext.Provider>
