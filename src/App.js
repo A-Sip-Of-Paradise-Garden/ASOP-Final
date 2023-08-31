@@ -3,39 +3,54 @@ import Home from "./pages/Home";
 import AuthForm from "./components/AuthForm";
 import NavBar from "./components/NavBar";
 import AuthRoute from "./components/AuthRoute";
-import { AuthContextProvider } from "./context/AuthContext";
+import { UserAuth } from "./context/AuthContext";
 import { AUTH_TYPES } from "./constants/authTypes";
+import CreateProfileForm from "./components/CreateProfileForm";
 
 const App = () => {
-  const { UNAUTHENTICATED } = AUTH_TYPES;
+  const { UNAUTHENTICATED, PROTECTED } = AUTH_TYPES;
+  const { user, userProfile } = UserAuth();
 
   return (
-    <AuthContextProvider>
-      <div className="w-full h-full">
-        <NavBar />
-        <div className="container mx-auto text-black px-4">
-          <Routes>
-            <Route path="/" exact element={<Home />} />
-            <Route
-              path="/login"
-              element={
-                <AuthRoute mode={UNAUTHENTICATED}>
-                  <AuthForm />
-                </AuthRoute>
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <AuthRoute mode={UNAUTHENTICATED}>
-                  <AuthForm />
-                </AuthRoute>
-              }
-            />
-          </Routes>
-        </div>
+    <div className="w-full h-full">
+      <NavBar />
+      <div className="container mx-auto text-black px-4">
+        <Routes>
+          {user && !userProfile ? (
+            <Route path="*" element={<CreateProfileForm />} />
+          ) : (
+            <>
+              <Route path="/" exact element={<Home />} />
+              <Route
+                path="/login"
+                element={
+                  <AuthRoute mode={UNAUTHENTICATED}>
+                    <AuthForm />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <AuthRoute mode={UNAUTHENTICATED}>
+                    <AuthForm />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <AuthRoute mode={PROTECTED}>
+                    <h1>Profile</h1>
+                  </AuthRoute>
+                }
+              />
+            </>
+          )}
+          <Route path="*" element={<h1>404 Page Not Found</h1>} />
+        </Routes>
       </div>
-    </AuthContextProvider>
+    </div>
   );
 };
 
