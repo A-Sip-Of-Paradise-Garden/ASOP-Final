@@ -6,10 +6,7 @@ import {
   signInWithPopup,
   onAuthStateChanged,
 } from "firebase/auth";
-import {
-  collection,
-  addDoc,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import { db, storage, auth, googleProvider } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +17,6 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const navigate = useNavigate();
-  const userProfilesCollection = collection(db, "user-profiles");
 
   const signup = async (email, password) => {
     try {
@@ -62,24 +58,37 @@ export const AuthContextProvider = ({ children }) => {
   const createUserProfile = async (newUserProfileData, profilePicture) => {
     try {
       if (!profilePicture) throw new Error("Please upload an image file");
-      const fileLocation = `profilePictures/${new Date().getTime()}_${profilePicture.name}`;
+      const fileLocation = `profilePictures/${new Date().getTime()}_${
+        profilePicture.name
+      }`;
       const filesFolderRef = ref(storage, fileLocation);
       await uploadBytes(filesFolderRef, profilePicture);
-      await addDoc(userProfilesCollection, {
+      await setDoc(doc(db, "user-profiles", user.uid), {
         ...newUserProfileData,
         profilePicture: fileLocation,
-        uid: user.uid,
       });
       setUserProfile(newUserProfileData);
       navigate("/");
-    } catch(err) {
+    } catch (err) {
       alert(err.message);
     }
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+      if (!currentUser) {
+        setUserProfile(null);
+        return;
+      }
+  
+      const ref = doc(db, "user-profiles", currentUser.uid);
+      const docSnap = await getDoc(ref);
+      
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setUserProfile(data);
+      }
     });
     return () => {
       unsubscribe();
@@ -88,7 +97,15 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ signup, user, logout, login, logInWithGoogle, createUserProfile, userProfile }}
+      value={{
+        signup,
+        user,
+        logout,
+        login,
+        logInWithGoogle,
+        createUserProfile,
+        userProfile,
+      }}
     >
       {children}
     </UserContext.Provider>
