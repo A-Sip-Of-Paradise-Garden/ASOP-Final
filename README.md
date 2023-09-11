@@ -11,9 +11,8 @@
 # Release Notes:
 ## v0.1.0
 ### Features
-  Added basic user login fetching functionality
-  
-  Added authentication boiler plate
+  - Added basic user login fetching functionality
+  - Added authentication boilerplate
 ### Bug Fixes
 N/A
 ### Known Issues
