@@ -6,6 +6,7 @@ import AuthRoute from "./components/AuthRoute";
 import { UserAuth } from "./context/AuthContext";
 import { AUTH_TYPES } from "./constants/authTypes";
 import CreateProfileForm from "./components/CreateProfileForm";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const { UNAUTHENTICATED, PROTECTED } = AUTH_TYPES;
@@ -41,7 +42,7 @@ const App = () => {
                 path="/profile"
                 element={
                   <AuthRoute mode={PROTECTED}>
-                    <h1>Profile</h1>
+                    <Profile />
                   </AuthRoute>
                 }
               />

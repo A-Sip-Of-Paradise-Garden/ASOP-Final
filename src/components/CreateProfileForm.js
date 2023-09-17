@@ -7,7 +7,7 @@ const CreateProfileForm = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
-  const [gender, setGender] = useState("male");
+  const [gender, setGender] = useState("Male");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
 
@@ -50,7 +50,7 @@ const CreateProfileForm = () => {
         <div className="flex w-full flex-col">
           <label htmlFor="age">Age</label>
           <input
-            type="number"
+            type="text"
             id="age"
             className="border-2 rounded py-2 px-2"
             value={age}
@@ -78,9 +78,9 @@ const CreateProfileForm = () => {
             onChange={(e) => setGender(e.target.value)}
             required
           >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div className="flex w-full flex-col">
@@ -91,8 +91,8 @@ const CreateProfileForm = () => {
             value={phoneNumber}
             onChange={handlePhoneNumberChange}
             className="border-2 rounded py-2 px-2"
-            placeholder="123-456-7890"
-            maxLength="12"
+            placeholder="1234567890"
+            maxLength="10"
             pattern="[0-9]*"
             required
           />
