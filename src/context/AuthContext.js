@@ -41,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
       await signInWithPopup(auth, googleProvider);
       navigate("/");
     } catch (err) {
-      alert(err.message);
+      console.log(err.message);
     }
   };
 
@@ -67,8 +67,7 @@ export const AuthContextProvider = ({ children }) => {
         ...newUserProfileData,
         profilePicture: fileLocation,
       });
-      setUserProfile(newUserProfileData);
-      navigate("/");
+      window.location.reload();
     } catch (err) {
       alert(err.message);
     }
