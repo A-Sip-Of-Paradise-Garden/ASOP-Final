@@ -10,23 +10,28 @@ export const URL_PATHS = [
   {
     name: "Events",
     path: "/events",
-  },
-  {
-    name: "Members",
-    path: "/members",
-  },
-  {
-    name: "Profile",
-    path: "/profile",
+    requiresAuth: false,
   },
   {
     name: "Contact Us",
     path: "/contact-us",
+    requiresAuth: false,
+  },
+  {
+    name: "Members",
+    path: "/members",
+    requiresAuth: true,
+    requiresAdmin: true,
+  },
+  {
+    name: "Profile",
+    path: "/profile",
+    requiresAuth: true,
   },
 ];
 
 const NavBar = () => {
-  const { user, logout } = UserAuth();
+  const { user, userProfile, logout } = UserAuth();
   const [menuVisible, setMenuVisible] = useState(false);
 
   const toggleMenu = () => {
@@ -39,11 +44,15 @@ const NavBar = () => {
         <Link to="/">Home</Link>
         <div className="flex gap-2 items-center">
           <div className="gap-2 items-center hidden md:flex">
-            {URL_PATHS.map((path) => (
-              <NavLink to={path.path} color={"greenUnderline"}>
-                {path.name}
-              </NavLink>
-            ))}
+            {URL_PATHS.map((path) => {
+              if (path.requiresAuth && !user) return null;
+              if (path.requiresAdmin && !userProfile?.isAdmin) return null;
+              return (
+                <NavLink to={path.path} color={"greenUnderline"}>
+                  {path.name}
+                </NavLink>
+              );
+            })}
           </div>
           <div className="flex gap-2 items-center">
             {!user ? (
