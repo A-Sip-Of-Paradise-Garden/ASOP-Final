@@ -10,7 +10,7 @@ import Profile from "./pages/Profile";
 import MembersPage from "./pages/Members";
 
 const App = () => {
-  const { UNAUTHENTICATED, PROTECTED } = AUTH_TYPES;
+  const { UNAUTHENTICATED, PROTECTED, ADMIN } = AUTH_TYPES;
   const { user, userProfile } = UserAuth();
 
   return (
@@ -50,7 +50,7 @@ const App = () => {
               <Route
                 path="/members"
                 element={
-                  <AuthRoute mode={PROTECTED}>
+                  <AuthRoute mode={ADMIN}>
                     <MembersPage />
                   </AuthRoute>
                 }
