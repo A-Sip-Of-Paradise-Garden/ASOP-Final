@@ -23,7 +23,8 @@ const MembersPage = () => {
   const filteredUserProfiles = userProfiles.filter((userProfile) => {
     const { name, id } = userProfile;
     const textFilterMatch =
-      name.toLowerCase().includes(textFilter.toLowerCase()) || id === textFilter;
+      name.toLowerCase().includes(textFilter.toLowerCase()) ||
+      id === textFilter;
 
     if (paymentStatusFilter === "paid") {
       // Filter users with a valid memberUntil date in the future
@@ -36,7 +37,8 @@ const MembersPage = () => {
       // Filter users with no memberUntil date or in the past
       return (
         textFilterMatch &&
-        (!userProfile.memberUntil || new Date() >= new Date(userProfile.memberUntil))
+        (!userProfile.memberUntil ||
+          new Date() >= new Date(userProfile.memberUntil))
       );
     } else {
       // No paymentStatusFilter or "all" filter
@@ -53,7 +55,9 @@ const MembersPage = () => {
         placeholder="🔍 Search person name or ID..."
       />
       <div className="flex w-full gap-1">
-        <span className="flex items-center">Filter by membership payment status </span>
+        <span className="flex items-center">
+          Filter by membership payment status
+        </span>
         <button
           className={`hover:text-emerald-400 text-lg ${
             paymentStatusFilter === "paid" ? "text-emerald-400" : ""
@@ -123,10 +127,7 @@ const UserCard = ({ userProfile }) => {
       }`}
     >
       <div className="flex justify-between items-center">
-        <div>
-          <img src="" alt="" />
-          <span className="font-bold">{name}</span>
-        </div>
+        <span className="font-bold">{name}</span>
         <div className="flex items-center gap-2">
           <span className={`${membershipCategory.color} py-1 px-2 rounded-xl`}>
             {membershipCategory.title}
@@ -140,7 +141,11 @@ const UserCard = ({ userProfile }) => {
             <UserInfo label="Age" value={age} />
             <UserInfo label="Date of Birth" value={dateOfBirth} />
             <UserInfo label="Phone Number" value={phoneNumber} />
-            <EditableUserInfo label="Member Until" value={memberUntil} userId={id} />
+            <EditableUserInfo
+              label="Member Until"
+              value={memberUntil}
+              userId={id}
+            />
             <UserInfo label="User ID" value={id} />
           </div>
           <Button
@@ -175,7 +180,7 @@ const EditableUserInfo = ({ label, value, userId }) => {
   const updateEditValue = async () => {
     try {
       await updateDoc(doc(db, "user-profiles", userId), {
-        "memberUntil": editValue,
+        memberUntil: editValue,
       });
       setIsEditing(false);
       window.location.reload();
