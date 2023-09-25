@@ -52,9 +52,9 @@ const MembersPage = () => {
         type="text"
         onChange={(e) => setTextFilter(e.target.value)}
         className="border border-black w-full p-3 rounded-lg"
-        placeholder="🔍 Search person name or ID..."
+        placeholder="🔍 Search user name or user ID..."
       />
-      <div className="flex w-full gap-1">
+      <div className="flex w-full gap-1 items-center">
         <span className="flex items-center">
           Filter by membership payment status
         </span>

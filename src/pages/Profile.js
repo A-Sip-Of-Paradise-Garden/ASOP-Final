@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
-import { ref, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
 import { db, storage } from "../config/firebase";
 import { capitalizeString } from "../helpers/stringUtils";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -31,6 +36,7 @@ const Profile = () => {
         alt="Profile"
         className="rounded-full max-h-[15rem] max-w-[15rem] w-full border-2 object-cover"
       />
+      <DisplayComponent label="User ID" value={user.uid} />
       <UpdateComponent
         label="Name"
         firebaseUserProperty="name"
@@ -87,6 +93,17 @@ const Profile = () => {
   );
 };
 
+const DisplayComponent = ({ label, value }) => {
+  return (
+    <div className="w-full flex flex-col gap-2">
+      <span className="font-bold text-lg underline underline-offset-2 decoration-emerald-400 decoration-2">
+        {label}
+      </span>
+      <span className="text-lg">{value}</span>
+    </div>
+  );
+};
+
 const UpdateComponent = ({
   label,
   type = "text",
@@ -120,7 +137,7 @@ const UpdateComponent = ({
         selectedFile.name
       }`;
       const filesFolderRef = ref(storage, fileLocation);
-      
+
       await uploadBytes(filesFolderRef, selectedFile);
       await deleteObject(ref(storage, userProfile.profilePicture));
       await updateDoc(doc(db, "user-profiles", uid), {
