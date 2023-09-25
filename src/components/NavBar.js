@@ -33,6 +33,11 @@ export const URL_PATHS = [
 const NavBar = () => {
   const { user, userProfile, logout } = UserAuth();
   const [menuVisible, setMenuVisible] = useState(false);
+  const URLS = URL_PATHS.filter((path) => {
+    if (path.requiresAuth && !user) return false;
+    if (path.requiresAdmin && !userProfile?.isAdmin) return false;
+    return true;
+  });
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -44,9 +49,7 @@ const NavBar = () => {
         <Link to="/">Home</Link>
         <div className="flex gap-2 items-center">
           <div className="gap-2 items-center hidden md:flex">
-            {URL_PATHS.map((path) => {
-              if (path.requiresAuth && !user) return null;
-              if (path.requiresAdmin && !userProfile?.isAdmin) return null;
+            {URLS.map((path) => {
               return (
                 <NavLink to={path.path} color={"greenUnderline"}>
                   {path.name}
@@ -71,7 +74,7 @@ const NavBar = () => {
               className="rounded hover:bg-gray-300 text-2xl md:hidden"
               onClick={toggleMenu}
             />
-            {menuVisible && <MobileMenu toggleMenu={toggleMenu} />}
+            {menuVisible && <MobileMenu URLS={URLS} toggleMenu={toggleMenu} />}
           </div>
         </div>
       </div>
