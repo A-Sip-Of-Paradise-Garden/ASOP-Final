@@ -23,3 +23,12 @@
 N/A
 ### Known Issues
 N/A
+
+## v0.1.1
+### Features
+  - Added members page where admins can check users' member status
+  - Modified user profile to include user ID information
+### Bug Fixes
+N/A
+### Known Issues
+N/A
