@@ -8,6 +8,7 @@ import { AUTH_TYPES } from "./constants/authTypes";
 import CreateProfileForm from "./components/CreateProfileForm";
 import Profile from "./pages/Profile";
 import MembersPage from "./pages/Members";
+import Payment from "./pages/Payment"
 
 const App = () => {
   const { UNAUTHENTICATED, PROTECTED, ADMIN } = AUTH_TYPES;
@@ -55,6 +56,10 @@ const App = () => {
                   </AuthRoute>
                 }
               />
+                <Route
+                    path="/payment"
+                    element={<Payment />}
+                />
             </>
           )}
           <Route path="*" element={<h1>404 Page Not Found</h1>} />
