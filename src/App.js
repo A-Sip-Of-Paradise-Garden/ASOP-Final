@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
+import "./pages/Home/Home.css"
 import AuthForm from "./components/AuthForm";
 import NavBar from "./components/NavBar";
 import AuthRoute from "./components/AuthRoute";
