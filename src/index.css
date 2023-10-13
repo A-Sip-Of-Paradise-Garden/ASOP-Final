@@ -12,3 +12,136 @@ html, body, #root {
   margin: 0;
   padding: 0;
 }
+
+.title-and-inputs {
+  display: flex;
+  flex-direction: vertical;
+  justify-content: center;
+  position: relative;
+  z-index: 9999;
+}
+
+.title-calendar {
+  text-align: center;
+  color: #38d49c;
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.add-event-button {
+  border: 1px solid white;
+  border-radius: 25px;
+  width: 150px;
+  height: 25px;
+  font-size: 12px;
+  background-color: #38d49c;
+  color: white;
+  font-weight: bold;
+}
+
+.add-event-button:hover {
+  background-color: #51a66c;
+}
+
+.add-event-input {
+  border: 1px solid black;
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.add-event-description {
+  border: 1px solid black;
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.add-event-startdate {
+  border: 1px solid black;
+  width: 230px;
+  height: 29px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+.add-event-enddate {
+  border: 1px solid black;
+  width: 230px;
+  height: 29px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+.event-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.add-button {
+  border: 1px solid white;
+  border-radius: 25px;
+  background-color: #38d49c;
+  font-weight: bold;
+  color: white;
+  width: 50px;
+  margin-right: 10px;
+}
+
+.add-button:hover {
+  background-color: #23a84d;
+}
+
+.cancel-button {
+  border: 1px solid white;
+  border-radius: 25px;
+  margin-right: 20px;
+  background-color: red;
+  font-weight: bold;
+  color: white;
+  width: 70px;
+}
+
+.cancel-button:hover {
+  background-color: #cf1b1b
+}
+
+.events-delete-button {
+  border: 1px solid #38d49c;
+  border-radius: 25px;
+  width: 70px;
+  color: white;
+  background-color: red;
+}
+
+.events-delete-button:hover {
+  background-color: #cf1b1b
+}
+
+.calendar-event-returns {
+  font-size: 5px;
+}
+
+.start-div {
+  display: flex;
+}
+
+.end-div {
+  display: flex;
+}
+
+.add-event-starttime {
+  height: 30px;
+}
+
+.add-event-endtime {
+  height: 30px;
+}
+
+.rbc-calendar {
+  z-index: 1;
+  overflow-y: scroll;
+}
+
+.rbc-event {
+  height: 30px;
+  overflow: hidden;
+}
