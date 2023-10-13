@@ -58,10 +58,10 @@ const App = () => {
                   </AuthRoute>
                 }
               />
-                <Route
-                    path="/payment"
-                    element={<Payment />}
-                />
+            <Route
+                path="/payment"
+                element={<Payment />}
+            />
               <Route
                 path="/events"
                 element={<EventsPage />}

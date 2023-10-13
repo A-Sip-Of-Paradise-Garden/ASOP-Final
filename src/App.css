@@ -55,6 +55,12 @@ button:active {
     margin-right: 25%;
 }
 
+.CardInput {
+    margin: 0 15px 20px;
+    padding: 0;
+    will-change: opacity, transform;
+}
+
 h1,
 h3 {
     text-align: center;
