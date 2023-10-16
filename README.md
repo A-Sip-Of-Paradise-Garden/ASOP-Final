@@ -13,6 +13,12 @@
   1. Go to firebase under asopgardenmanager@gmail.com
   2. On firestore, search for the user
   3. Create a isAdmin boolean property and set it to true
+ 
+- Running the stripe test
+  1. Open 2 terminals, one in the ASOP-Final/src directory. The other in the ASOP-Final/server directory
+  2. In the src terminal, run "npm start" in order to start the local webpage
+  3. In the server terminal, run "node index.js" in order to start the REST API
+  4. For test card info, use "424242" repeatedly.
 
 # Release Notes:
 ## v0.1.0

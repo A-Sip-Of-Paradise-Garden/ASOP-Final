@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
+import "./pages/Home/Home.css"
 import AuthForm from "./components/AuthForm";
 import NavBar from "./components/NavBar";
 import AuthRoute from "./components/AuthRoute";
@@ -9,6 +10,7 @@ import CreateProfileForm from "./components/CreateProfileForm";
 import Profile from "./pages/Profile";
 import MembersPage from "./pages/Members";
 import EventsPage from "./pages/Events"
+import Payment from "./pages/Payment"
 
 const App = () => {
   const { UNAUTHENTICATED, PROTECTED, ADMIN } = AUTH_TYPES;
@@ -56,6 +58,10 @@ const App = () => {
                   </AuthRoute>
                 }
               />
+            <Route
+                path="/payment"
+                element={<Payment />}
+            />
               <Route
                 path="/events"
                 element={<EventsPage />}

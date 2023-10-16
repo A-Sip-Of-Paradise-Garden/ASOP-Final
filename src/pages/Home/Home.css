@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Reem Kufi", sans-serif !important;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.App {
+    min-height: 100vh;
+    width: 85vw;
+    max-width: 1900px;
+    margin: 0rem auto;
+}
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.home-banner-container {
+    position: relative;
+    display: flex;
+    padding-top: 3rem;
+}
+.home-bannerImage-container {
+    position: absolute;
+    top: -40px;
+    right: -210px;
+    z-index: -2;
+    max-width: 650px;
+}
+.home-image-section {
+    max-width: 1000px;
+    flex: 1;
+}
+
+.home-text-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.primary-heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #4c4c4c;
+    max-width: 600px;
+}
+.primary-text {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    max-width: 700px;
+    color: #6a6a6a;
+    margin: 1.5rem 0rem;
+}
+.secondary-text {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    max-width: 700px;
+    color: #6a6a6a;
+    margin: 0.5rem 0rem;
+}
+.secondary-button {
+    padding: 1rem 2.5rem;
+    background-color: #56d48e;
+    outline: none;
+    border: none;
+    border-radius: 5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.secondary-button svg {
+    margin-left: 0.75rem;
+    font-size: 1.5rem;
+}
+.secondary-button:hover {
+    background-color: #47b378;
+}
+
+.intro-section-container {
+    margin-top: 20rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.intro-bgd-image-container {
+    position: absolute;
+    left: -210px;
+    z-index: -2;
+}
+.intro-section-image-container {
+    flex: 0.9;
+    margin-right: 2rem;
+}
+.intro-section-text-container {
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.primary-subheading {
+    font-weight: 700;
+    color: #56d48e;
+    font-size: 2rem;
+}
+
+.about-section-wrapper {
+    margin-top: 15rem;
+}
+.about-section-top p {
+    text-align: center;
+    max-width: 600px !important;
+}
+.about-section-top h1 {
+    max-width: 700px !important;
+}
+.about-section-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.about-section-info {
+    width: 290px;
+    min-height: 350px;
+    background-color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 1rem;
+    color: #505050;
+    margin: 1rem 2rem;
+}
+.about-section-info h2 {
+    margin: 1rem 0rem;
+}
+.work-section-bottom {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.about-section-info p {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+  
+
+@media (max-width: 800px) {
+    .home-bannerImage-container {
+      max-width: 500px;
+    }
+    .home-banner-container,
+    .intro-section-container {
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+    }
+    .intro-section-container {
+      flex-direction: column;
+    }
+    .home-image-section,
+    .intro-section-image-container {
+      width: 100%;
+      max-width: 400px;
+    }
+    .primary-heading {
+      text-align: center;
+      max-width: 90%;
+    }
+    .primary-text {
+      text-align: center;
+      max-width: 80%;
+    }
+    .home-text-section,
+    .intro-section-text-container {
+      justify-content: center;
+      align-items: center;
+      margin-top: 4rem;
+    }
+    .secondary-button {
+      font-size: 1rem;
+      padding: 0.8rem 2rem;
+      cursor: pointer;
+    }
+    .intro-section-container {
+      margin-top: 5rem !important;
+    }
+    .primary-subheading {
+      text-align: center;
+    }
+    .intro-section-image-container {
+      margin-right: 0rem !important;
+    }
+    .about-section-wrapper {
+      margin-top: 5rem !important;
+    }
+    .about-section-bottom {
+      margin-top: 1rem !important;
+    }
+    .App {
+      max-width: 95vw;
+    }
+}
+@media (max-width: 600px) {
+    .home-bannerImage-container,
+    .intro-background-image-container {
+      display: none;
+    }
+}
+  
