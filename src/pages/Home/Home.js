@@ -4,6 +4,7 @@ import asop_img1 from "../../assets/home/asop_img1.png";
 import home_banner_bgd from "../../assets/home/home_banner_bgd.png";
 
 import Intro from "../Home/Intro";
+import About from "../Home/About";
 
 const Home = () => {
   return (
@@ -29,6 +30,7 @@ const Home = () => {
         </div>
       </div>
       <Intro />
+      <About />
     </div>
   );
 };
