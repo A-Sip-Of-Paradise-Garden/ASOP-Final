@@ -57,7 +57,7 @@ html, body, #root {
 
 .add-event-startdate {
   border: 1px solid black;
-  width: 230px;
+  width: 198px;
   height: 29px;
   margin-right: 5px;
   margin-bottom: 10px;
@@ -65,10 +65,18 @@ html, body, #root {
 
 .add-event-enddate {
   border: 1px solid black;
-  width: 230px;
+  width: 198px;
   height: 29px;
   margin-right: 5px;
   margin-bottom: 10px;
+}
+
+.add-event-starttime {
+  width: 197px;
+}
+
+.add-event-endtime {
+  width: 197px;
 }
 
 .event-buttons {
@@ -77,12 +85,11 @@ html, body, #root {
 }
 
 .add-button {
-  border: 1px solid white;
   border-radius: 25px;
   background-color: #38d49c;
   font-weight: bold;
   color: white;
-  width: 50px;
+  width: 70px;
   margin-right: 10px;
 }
 
@@ -91,9 +98,7 @@ html, body, #root {
 }
 
 .cancel-button {
-  border: 1px solid white;
   border-radius: 25px;
-  margin-right: 20px;
   background-color: red;
   font-weight: bold;
   color: white;
@@ -105,11 +110,11 @@ html, body, #root {
 }
 
 .events-delete-button {
-  border: 1px solid #38d49c;
   border-radius: 25px;
   width: 70px;
   color: white;
   background-color: red;
+  margin-top: 10px;
 }
 
 .events-delete-button:hover {
@@ -145,4 +150,5 @@ html, body, #root {
   height: 30px;
   overflow: hidden;
 }
+
 
