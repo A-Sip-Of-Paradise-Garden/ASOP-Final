@@ -10,6 +10,7 @@ import CreateProfileForm from "./components/CreateProfileForm";
 import Profile from "./pages/Profile";
 import MembersPage from "./pages/Members";
 import EventsPage from "./pages/Events"
+import Payment from "./pages/Payment"
 
 const App = () => {
   const { UNAUTHENTICATED, PROTECTED, ADMIN } = AUTH_TYPES;
@@ -57,6 +58,10 @@ const App = () => {
                   </AuthRoute>
                 }
               />
+            <Route
+                path="/payment"
+                element={<Payment />}
+            />
               <Route
                 path="/events"
                 element={<EventsPage />}

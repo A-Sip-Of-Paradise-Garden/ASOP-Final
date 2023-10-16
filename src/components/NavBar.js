@@ -28,6 +28,11 @@ export const URL_PATHS = [
     path: "/profile",
     requiresAuth: true,
   },
+  {
+    name: "Payments",
+    path: "/payment",
+    requiresAuth: false,
+  },
 ];
 
 const NavBar = () => {
@@ -35,8 +40,8 @@ const NavBar = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const URLS = URL_PATHS.filter((path) => {
     if (path.requiresAuth && !user) return false;
-    if (path.requiresAdmin && !userProfile?.isAdmin) return false;
-    return true;
+    return !(path.requiresAdmin && !userProfile?.isAdmin);
+
   });
 
   const toggleMenu = () => {
