@@ -11,6 +11,8 @@ import { addDays } from "date-fns";
 import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const locales = {
   "en-US": require("date-fns/locale/en-US")
@@ -32,9 +34,6 @@ const EventsPage = () => {
 
   const [allEvents, setAllEvents] = useState(events);
   const [formVisible, setFormVisible] = useState(false);
-
-  const [showEventPopup, setShowEventPopup] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const [newEvent, setNewEvent] = useState({
     title: "",
@@ -72,15 +71,6 @@ const EventsPage = () => {
       endTime: "12:00"
     });
   }
-
-  const handleEventClick = event => {
-    setSelectedEvent(event);
-    setShowEventPopup(true);
-  };
-
-  const closeEventPopup = () => {
-    setShowEventPopup(false);
-  };
 
   const formatTime = (time) => {
     const [hours, minutes] = time.split(':');
@@ -189,9 +179,8 @@ const EventsPage = () => {
         events={allEvents}
         startAccessor="startDate"
         endAccessor="endDate"
-        style={{ height: 750, margin: "15px" }}
-        defaultView="agenda"
-        views={["agenda", "month"]}
+        style={{ height: 600, margin: "15px" }}
+        views={["month", "agenda"]}
         eventPropGetter={() => {
           return {
             style: {
@@ -208,7 +197,12 @@ const EventsPage = () => {
             }
             return (
               <div className="calender-event-returns">
-                <div onClick={() => handleEventClick(event)}><span style={{ fontWeight: 'bold' }}>{event.title}</span></div>
+                {/* <div onClick={() => handleEventClick(event)}><span style={{ fontWeight: 'bold' }}>{event.title}</span></div> */}
+                <Popup contentStyle={{ width: '40%' }} trigger={<button><span style={{ fontWeight: 'bold' }}>{event.title}</span></button>}>
+                  <div>{event.description}</div>
+                  <div>{formatTime(event.startTime)} - {formatTime(event.endTime)}</div>
+                  <button className="events-delete-button" onClick={handleDeleteEvent}>Delete</button>
+                </Popup>
                 <div>{event.description}</div>
                 <div>{formatTime(event.startTime)} - {formatTime(event.endTime)}</div>
                 <button className="events-delete-button" onClick={handleDeleteEvent}>Delete</button>
@@ -224,18 +218,6 @@ const EventsPage = () => {
           },
         }}
       />
-
-      {showEventPopup && (
-        <div className="event-popup">
-          <h2>Event Details</h2>
-          <div><strong>Title:</strong> {selectedEvent.title}</div>
-          <div><strong>Description:</strong> {selectedEvent.description}</div>
-          <div><strong>Start Time:</strong> {formatTime(selectedEvent.startTime)}</div>
-          <div><strong>End Time:</strong> {formatTime(selectedEvent.endTime)}</div>
-          <button className="event-popup-close-button" onClick={closeEventPopup}>Close</button>
-        </div>
-      )}
-
     </div>
   );
 }
