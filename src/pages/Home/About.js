@@ -2,6 +2,7 @@ import React from "react";
 import asop_Keyatta_img1 from "../../assets/home/asop_Keyatta_img1.png";
 import asop_Rori_img1 from "../../assets/home/asop_Rori_img1.png";
 import asop_Stephanie_img1 from "../../assets/home/asop_Stephanie_img1.png";
+import about_bgd from "../../assets/home/about_bgd.png";
 
 const About = () => {
     const AboutInfo = [
@@ -23,6 +24,10 @@ const About = () => {
     ];
     return (
         <div className="about-section-wrapper">
+            <div className="about-bgd-image-container">
+                <img src={about_bgd} alt="" />
+            </div>
+
             <div className="about-section-top">
                 <h1 className="primary-heading">About Us</h1>
             </div>
