@@ -17,13 +17,21 @@
     border-top: 1px solid rgb(5 150 105) ;
 }
 
-.StripeElement--webkit-autofill {
-    background: transparent !important;
+.align-center {
+    display: flex;
+    justify-content: center;  /* Horizontally center */
+    align-items: center;      /* Vertically center */
 }
 
-.StripeElement {
-    width: 100%;
-    padding: 11px 15px 11px 0;
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.PaymentPage {
+    margin: 0 15px 20px;
+    padding: 0;
+    will-change: opacity, transform;
 }
 
 button {
@@ -55,11 +63,6 @@ button:active {
     margin-right: 25%;
 }
 
-.CardInput {
-    margin: 0 15px 20px;
-    padding: 0;
-    will-change: opacity, transform;
-}
 
 h1,
 h3 {

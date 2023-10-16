@@ -1,11 +1,11 @@
-import StripeContainer from "../components/StripeContainer";
 import '../App.css';
+import PaymentUpdate from "../components/PaymentUpdate";
 
 const Payment = () => {
     return (
-        <div className="CardInput">
-            <h1>ASOP Community Connect Payments Page</h1>
-            <StripeContainer />
+        <div className="PaymentPage">
+            <h1>Donate to A Sip of Paradise!</h1>
+            <PaymentUpdate />
         </div>
     );
 };
