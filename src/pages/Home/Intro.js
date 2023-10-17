@@ -10,10 +10,12 @@ const Intro = () => {
             <div className="intro-bgd-image-container">
                 <img src={intro_bgd} alt="" />
             </div>
+
             <div className="intro-section-image-container">
                 <img src={asop_img2} alt="" />
                 <img src={asop_img3} alt="" />
             </div>
+            
             <div className="intro-section-text-container">
                 <p className="primary-subheading">Brief Introduction</p>
 

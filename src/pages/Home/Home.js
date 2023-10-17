@@ -14,6 +14,7 @@ const Home = () => {
         <div className="home-bannerImage-container">
           <img src={home_banner_bgd} alt="" />
         </div>
+
         <div className="home-text-section">
           <h1 className="primary-heading">
             A Sip of Paradise Garden
@@ -25,6 +26,7 @@ const Home = () => {
             Become a Member <FiArrowRight />{" "}
           </button>
         </div>
+        
         <div className="home-image-section">
           <img src={asop_img1} alt="" />
         </div>
