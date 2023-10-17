@@ -18,7 +18,7 @@ body {
     max-width: 100%;
     overflow-x: hidden;
 }
-
+/* This is a the style for the home section. */
 .home-banner-container {
     position: relative;
     display: flex;
@@ -35,7 +35,6 @@ body {
     max-width: 1000px;
     flex: 1;
 }
-
 .home-text-section {
     flex: 1;
     display: flex;
@@ -82,7 +81,7 @@ body {
 .secondary-button:hover {
     background-color: #47b378;
 }
-
+/* This is the style for the intro section. */
 .intro-section-container {
     margin-top: 20rem;
     position: relative;
@@ -110,7 +109,7 @@ body {
     color: #56d48e;
     font-size: 2rem;
 }
-
+/* This is the style for about us section. */
 .about-bgd-image-container {
     position: absolute;
     right: -150px;
@@ -165,8 +164,7 @@ body {
     align-items: center;
     font-weight: 500;
 }
-  
-
+/* This is the style for all the images and texts. */
 @media (max-width: 800px) {
     .home-bannerImage-container {
       max-width: 500px;
@@ -223,6 +221,7 @@ body {
       max-width: 95vw;
     }
 }
+/* Style for the images. */
 @media (max-width: 600px) {
     .home-bannerImage-container,
     .intro-background-image-container,
