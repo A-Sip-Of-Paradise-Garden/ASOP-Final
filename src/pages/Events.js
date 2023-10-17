@@ -103,7 +103,7 @@ const EventsPage = () => {
               <input
                 className="add-event-input"
                 type="text"
-                placeholder="Add event name..."
+                placeholder="Add event title..."
                 value={newEvent.title}
                 onChange={(e) => setNewEvent({
                   ...newEvent,
@@ -199,12 +199,12 @@ const EventsPage = () => {
               <div className="calender-event-returns">
                 {/* <div onClick={() => handleEventClick(event)}><span style={{ fontWeight: 'bold' }}>{event.title}</span></div> */}
                 <Popup contentStyle={{ width: '40%' }} trigger={<button><span style={{ fontWeight: 'bold' }}>{event.title}</span></button>}>
+                  <div><span style={{ fontWeight: 'bold' }}>{formatTime(event.startTime)} - {formatTime(event.endTime)}</span></div>
                   <div>{event.description}</div>
-                  <div>{formatTime(event.startTime)} - {formatTime(event.endTime)}</div>
                   <button className="events-delete-button" onClick={handleDeleteEvent}>Delete</button>
                 </Popup>
                 <div>{event.description}</div>
-                <div>{formatTime(event.startTime)} - {formatTime(event.endTime)}</div>
+                {/* <div>{formatTime(event.startTime)} - {formatTime(event.endTime)}</div> */}
                 <button className="events-delete-button" onClick={handleDeleteEvent}>Delete</button>
               </div>
             );
