@@ -13,6 +13,7 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { UserAuth } from "../context/AuthContext";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US")
@@ -34,6 +35,8 @@ const EventsPage = () => {
 
   const [allEvents, setAllEvents] = useState(events);
   const [formVisible, setFormVisible] = useState(false);
+
+  const { user, userProfile } = UserAuth();
 
   const [newEvent, setNewEvent] = useState({
     title: "",
