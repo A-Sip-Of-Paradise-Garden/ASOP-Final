@@ -89,7 +89,7 @@ html, body, #root {
   background-color: #38d49c;
   font-weight: bold;
   color: white;
-  width: 70px;
+  width: 71px;
   margin-right: 10px;
 }
 
@@ -102,7 +102,7 @@ html, body, #root {
   background-color: red;
   font-weight: bold;
   color: white;
-  width: 70px;
+  width: 71px;
 }
 
 .cancel-button:hover {
