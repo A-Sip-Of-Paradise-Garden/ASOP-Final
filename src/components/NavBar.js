@@ -14,7 +14,7 @@ export const URL_PATHS = [
   },
   {
     name: "Contact Us",
-    path: "/contact-us",
+    path: "/contact",
     requiresAuth: false,
   },
   {

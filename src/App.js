@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import MembersPage from "./pages/Members";
 import EventsPage from "./pages/Events"
 import Payment from "./pages/Payment"
+import Contact from "./pages/Contactus";
 
 const App = () => {
   const { UNAUTHENTICATED, PROTECTED, ADMIN } = AUTH_TYPES;
@@ -65,6 +66,10 @@ const App = () => {
               <Route
                 path="/events"
                 element={<EventsPage />}
+              />
+              <Route
+                path="/contact"
+                element={<Contact />}
               />
             </>
           )}
