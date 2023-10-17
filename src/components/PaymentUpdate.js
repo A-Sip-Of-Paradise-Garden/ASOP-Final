@@ -14,7 +14,7 @@ const ProductDisplay = () => (
             </div>
         <form action="http://localhost:4000/create-checkout-session" method="POST">
             <div className="button-container">
-                <button className="button">
+                <button className="donateButton">
                     Donate!
                 </button>
             </div>
