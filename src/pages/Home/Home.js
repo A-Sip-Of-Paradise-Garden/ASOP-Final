@@ -5,6 +5,7 @@ import home_banner_bgd from "../../assets/home/home_banner_bgd.png";
 
 import Intro from "../Home/Intro";
 import About from "../Home/About";
+import Contact from "./Contact";
 
 const Home = () => {
   return (
@@ -33,6 +34,7 @@ const Home = () => {
       </div>
       <Intro />
       <About />
+      <Contact />
     </div>
   );
 };
