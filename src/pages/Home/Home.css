@@ -83,7 +83,7 @@ body {
 }
 /* This is the style for the intro section. */
 .intro-section-container {
-    margin-top: 20rem;
+    margin-top: 10rem;
     position: relative;
     display: flex;
     align-items: center;
@@ -117,7 +117,7 @@ body {
     z-index: -2;
 }
 .about-section-wrapper {
-    margin-top: 15rem;
+    margin-top: 5rem;
 }
 .about-section-top p {
     text-align: center;
@@ -152,7 +152,7 @@ body {
     font-size: x-large;
 }
 .about-section-bottom {
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,6 +163,37 @@ body {
     display: flex;
     align-items: center;
     font-weight: 500;
+}
+/* This is the style for the Contact section */
+.contact-page-wrapper h1 {
+    max-width: 900px !important;
+}
+.contact-page-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10rem 0rem;
+}
+.contact-form-container {
+    background-color: white;
+    max-width: 700px;
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 5rem;
+    border-color: #47b378;
+    border-style: double;
+}
+.contact-form-container input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    padding: 0.5rem 1rem;
 }
 /* This is the style for all the images and texts. */
 @media (max-width: 800px) {
@@ -216,6 +247,20 @@ body {
     }
     .about-section-bottom {
       margin-top: 1rem !important;
+    }
+    .contact-form-container {
+      padding: 0.5rem !important;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem !important;
+    }
+    .contact-form-container input {
+      font-size: 1rem !important;
+      max-width: 100%;
+      padding: 0.5rem 1rem !important;
+      margin-bottom: 0.8rem !important;
+      text-align: center;
     }
     .App {
       max-width: 95vw;
