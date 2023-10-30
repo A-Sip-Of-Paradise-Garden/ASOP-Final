@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
+import asopImage from '../assets/home/asop_img1.png';
 
 const ProductDisplay = () => (
     <section >
             <div className={"align-center"}>
                 <img
-                    src="https://lh3.googleusercontent.com/p/AF1QipMybPsyRBFY5m0qpx3U0avHTyiD6M0iZ2zB17sb=s680-w680-h510"
-                    alt="Image from Google, for some reason was having trouble with local images"
+                    src={asopImage}
+                    alt=""
                 />
             </div>
             <div>
