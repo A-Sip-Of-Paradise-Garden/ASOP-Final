@@ -53,6 +53,7 @@ N/A
   - Created the home page for the website
   - Created the contact us page for the website
   - Created the events page that allows for board members to manage events and allows for members to view / RSVP for events
+  - Created payments page through Stripe
 ### Bug Fixes
   - Fixed a bug regarding global styling
 ### Known Issues
