@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import {
   ref,
@@ -12,6 +12,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "../components/Button";
 import { doc, updateDoc } from "firebase/firestore";
+import "../App.css"
 
 const Profile = () => {
   const { user, userProfile } = UserAuth();
@@ -36,6 +37,11 @@ const Profile = () => {
         alt="Profile"
         className="rounded-full max-h-[15rem] max-w-[15rem] w-full border-2 object-cover"
       />
+      <form action="http://localhost:4000/create-dues-checkout-session" method="POST">
+          <button className="duesButton">
+            Pay Dues!
+          </button>
+      </form>
       <DisplayComponent label="User ID" value={user.uid} />
       <UpdateComponent
         label="Name"

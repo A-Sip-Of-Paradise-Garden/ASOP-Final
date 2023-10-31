@@ -22,8 +22,25 @@ app.post('/create-checkout-session', cors(),async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `https://example.com/`,
-        cancel_url: `https://example.com/`,
+        success_url: `https://example.com/`, // change to handle firebase update
+        cancel_url: `https://example.com/`,  // change to handle firebase update
+    });
+
+    res.redirect(303, session.url);
+});
+
+app.post('/create-dues-checkout-session', cors(),async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+        line_items: [
+            {
+                // Price ID is obtained from the stripe dashboard
+                price: 'price_1O7DWfH1uLXX7HqDtAE10Sq7',
+                quantity: 1,
+            },
+        ],
+        mode: 'payment',
+        success_url: `https://example.com/`, // change to handle firebase update
+        cancel_url: `https://example.com/`,  // change to handle firebase update
     });
 
     res.redirect(303, session.url);
