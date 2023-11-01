@@ -269,7 +269,7 @@ body {
 /* Style for the images. */
 @media (max-width: 600px) {
     .home-bannerImage-container,
-    .intro-background-image-container,
+    .intro-bgd-image-container,
     .about-bgd-image-container {
       display: none;
     }
