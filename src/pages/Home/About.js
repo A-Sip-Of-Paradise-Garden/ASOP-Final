@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import asop_Keyatta_img1 from "../../assets/home/asop_Keyatta_img1.png";
 import asop_Rori_img1 from "../../assets/home/asop_Rori_img1.png";
 import asop_Stephanie_img1 from "../../assets/home/asop_Stephanie_img1.png";
 import about_bgd from "../../assets/home/about_bgd.png";
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const About = () => {
     const AboutInfo = [
@@ -22,8 +25,13 @@ const About = () => {
             text: "Director of Communications",
         },
     ];
+
+    useEffect(()=> {
+        AOS.init({duration: 2000});
+    });
+    
     return (
-        <div className="about-section-wrapper">
+        <div className="about-section-wrapper" data-aos="zoom-in">
             <div className="about-bgd-image-container">
                 <img src={about_bgd} alt="" />
             </div>
