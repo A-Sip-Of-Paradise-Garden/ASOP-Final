@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import asop_img2 from "../../assets/home/asop_img2.png";
 import asop_img3 from "../../assets/home/asop_img3.png"
 import intro_bgd from "../../assets/home/intro_bgd.png";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 const Intro = () => {
+    useEffect(()=> {
+        AOS.init({duration: 2000});
+    });
+    
     return (
         <div className="intro-section-container">
             <div className="intro-bgd-image-container">
                 <img src={intro_bgd} alt="" />
             </div>
 
-            <div className="intro-section-image-container">
+            <div className="intro-section-image-container" data-aos="zoom-out">
                 <img src={asop_img2} alt="" />
                 <img src={asop_img3} alt="" />
             </div>
             
-            <div className="intro-section-text-container">
+            <div className="intro-section-text-container" data-aos="zoom-out">
                 <p className="primary-subheading">Brief Introduction</p>
 
                 <h1 className="primary-heading">Welcome</h1>
