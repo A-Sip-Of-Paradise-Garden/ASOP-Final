@@ -16,7 +16,7 @@ import "../App.css"
 const Profile = () => {
   const { user, userProfile } = UserAuth();
   const [profilePictureImg, setProfilePictureImg] = useState("");
-  const { name, dateOfBirth, gender, phoneNumber, profilePicture } =
+  const { name, dateOfBirth, gender, phoneNumber, profilePicture, notifications } =
     userProfile;
 
   useEffect(() => {
@@ -75,6 +75,15 @@ const Profile = () => {
         type="tel"
         placeholder="Your phone number here..."
         key={"phone-number"}
+      />
+      <UpdateComponent
+        label="Notifications"
+        firebaseUserProperty="notifications"
+        uid={user.uid}
+        initialValue={notifications}
+        type="checkbox"
+        userProfile={userProfile}
+        key={"notifications"}
       />
       <UpdateComponent
         label="Profile Picture"
@@ -189,6 +198,16 @@ const UpdateComponent = ({
         />
       );
       break;
+    case "checkbox":
+      inputComponent = (
+        <input
+          type={type}
+          className="ml-auto border-2 rounded accent-emerald-500 h-5 w-5"
+          checked={value}
+          onChange={(e) => setValue(s => !s)}
+        />
+      );
+      break;
     default:
       inputComponent = (
         <input
@@ -234,7 +253,7 @@ const UpdateComponent = ({
         </>
       ) : (
         <div className="flex justify-between">
-          <span className="text-lg">{value}</span>
+          <span className="text-lg">{`${value}`}</span>
           <button
             className="rounded hover:bg-emerald-400"
             type="button"

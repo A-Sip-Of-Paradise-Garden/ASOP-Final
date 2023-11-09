@@ -66,6 +66,7 @@ export const AuthContextProvider = ({ children }) => {
       await setDoc(doc(db, "user-profiles", user.uid), {
         ...newUserProfileData,
         profilePicture: fileLocation,
+        notifications: true,
       });
       window.location.reload();
     } catch (err) {
