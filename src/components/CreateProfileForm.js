@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Button from "./Button";
 import { UserAuth } from "../context/AuthContext";
+import { capitalizeString } from "../helpers/stringUtils";
 
 const CreateProfileForm = () => {
   const { createUserProfile } = UserAuth();
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [gender, setGender] = useState("Male");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -13,9 +13,12 @@ const CreateProfileForm = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    if (new Date(dateOfBirth) > new Date()) {
+      alert("Date of birth cannot be in the future");
+      return; 
+    }
     const newUserProfileData = {
-      name,
-      age,
+      name: capitalizeString(name),
       dateOfBirth,
       gender,
       phoneNumber,
@@ -36,25 +39,14 @@ const CreateProfileForm = () => {
         onSubmit={onSubmitHandler}
       >
         <div className="flex w-full flex-col">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Full Name</label>
           <input
             type="text"
             id="name"
             className="border-2 rounded py-2 px-2"
-            placeholder="Your name here..."
+            placeholder="Your full name here..."
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="flex w-full flex-col">
-          <label htmlFor="age">Age</label>
-          <input
-            type="text"
-            id="age"
-            className="border-2 rounded py-2 px-2"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
             required
           />
         </div>

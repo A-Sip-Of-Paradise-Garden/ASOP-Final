@@ -5,6 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { db } from "../config/firebase";
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import Button from "../components/Button";
+import { ageFromDateOfBirth } from "../helpers/stringUtils";
 
 const MembersPage = () => {
   const [textFilter, setTextFilter] = useState("");
@@ -95,7 +96,7 @@ const MembersPage = () => {
 };
 
 const UserCard = ({ userProfile }) => {
-  const { id, name, age, dateOfBirth, phoneNumber, memberUntil, isAdmin } =
+  const { id, name, dateOfBirth, phoneNumber, memberUntil, isAdmin } =
     userProfile;
 
   const [toggle, setToggle] = useState(false);
@@ -138,7 +139,7 @@ const UserCard = ({ userProfile }) => {
       {toggle && (
         <>
           <div className="grid grid-cols-2">
-            <UserInfo label="Age" value={age} />
+            <UserInfo label="Age" value={ageFromDateOfBirth(dateOfBirth)} />
             <UserInfo label="Date of Birth" value={dateOfBirth} />
             <UserInfo label="Phone Number" value={phoneNumber} />
             <EditableUserInfo
