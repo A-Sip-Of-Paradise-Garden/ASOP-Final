@@ -7,7 +7,6 @@ import {
   deleteObject,
 } from "firebase/storage";
 import { db, storage } from "../config/firebase";
-import { capitalizeString } from "../helpers/stringUtils";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "../components/Button";
@@ -17,7 +16,7 @@ import "../App.css"
 const Profile = () => {
   const { user, userProfile } = UserAuth();
   const [profilePictureImg, setProfilePictureImg] = useState("");
-  const { name, age, dateOfBirth, gender, phoneNumber, profilePicture } =
+  const { name, dateOfBirth, gender, phoneNumber, profilePicture } =
     userProfile;
 
   useEffect(() => {
@@ -47,21 +46,12 @@ const Profile = () => {
         label="Name"
         firebaseUserProperty="name"
         uid={user.uid}
-        initialValue={capitalizeString(name)}
+        initialValue={name}
         placeholder="Your name here..."
         key={"name"}
       />
       <UpdateComponent
-        label="Age"
-        firebaseUserProperty="age"
-        uid={user.uid}
-        initialValue={age}
-        type="number"
-        placeholder="Your age here..."
-        key={"age"}
-      />
-      <UpdateComponent
-        label="Date"
+        label="Date of Birth"
         firebaseUserProperty="dateOfBirth"
         uid={user.uid}
         initialValue={dateOfBirth}
