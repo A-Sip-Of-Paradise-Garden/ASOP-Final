@@ -10,8 +10,8 @@ import CreateProfileForm from "./components/CreateProfileForm";
 import Profile from "./pages/Profile";
 import MembersPage from "./pages/Members";
 import EventsPage from "./pages/Events"
-import Payment from "./pages/Payment"
 import Contact from "./pages/Contactus";
+import PaymentHandler from "./components/PaymentHandler";
 
 const App = () => {
   const { UNAUTHENTICATED, PROTECTED, ADMIN } = AUTH_TYPES;
@@ -61,7 +61,7 @@ const App = () => {
               />
             <Route
                 path="/payment"
-                element={<Payment />}
+                element={<PaymentHandler />}
             />
               <Route
                 path="/events"
