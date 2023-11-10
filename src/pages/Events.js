@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -14,6 +14,8 @@ import 'react-clock/dist/Clock.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { UserAuth } from "../context/AuthContext";
+import { db, storage } from "../config/firebase";
+import { doc, getDocs, addDoc, updateDoc, collection } from "firebase/firestore";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US")
@@ -47,16 +49,101 @@ const EventsPage = () => {
     startTime: selectedStartTime,
     endTime: selectedEndTime,
   });
+  const eventCollectionRef = collection(db, "events")
 
-  const handleAddEvent = () => {
+  useEffect(() => {
+    getEventList()
+  }, []);
+
+  // const getEventList = async () => {
+  //   try {
+  //     const data = await getDocs(eventCollectionRef)
+  //     const filteredData = data.docs.map((doc) => ({
+  //       ...doc.data(),
+  //       id: doc.id,
+  //     }))
+  //     setAllEvents(filteredData)
+  //     console.log(allEvents)
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+  const getEventList = async () => {
+    try {
+      const data = await getDocs(eventCollectionRef);
+      const filteredData = data.docs.map((doc) => {
+        const firestoreData = doc.data();
+        const startDate = firestoreData.startDate.toDate(); // Convert Firestore Timestamp to Date
+        const endDate = firestoreData.endDate.toDate(); // Convert Firestore Timestamp to Date
+        return {
+          ...firestoreData,
+          id: doc.id,
+          startDate,
+          endDate,
+        };
+      });
+      setAllEvents(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // const handleAddEvent = () => {
+  //   if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
+  //     return;
+  //   } else {
+  //     const adjustedEndDate = addDays(newEvent.endDate, 1);
+  //     setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
+  //     clearEventData();
+  //   }
+  //}
+
+  // const handleAddEvent = async () => {
+  //   if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
+  //     return;
+  //   } else {
+  //     try {
+  //       await addDoc(eventCollectionRef, {
+  //         title: newEvent.title,
+  //         startDate: newEvent.startDate,
+  //         endDate: newEvent.endDate,
+  //         startTime: newEvent.startTime,
+  //         endTime: newEvent.endTime,
+  //         description: newEvent.description,
+  //         capacity: newEvent.capacity
+  //       })
+  //       const adjustedEndDate = addDays(newEvent.endDate, 1);
+  //       setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
+  //       clearEventData();
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  // }
+  const handleAddEvent = async () => {
     if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
       return;
     } else {
-      const adjustedEndDate = addDays(newEvent.endDate, 1);
-      setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
-      clearEventData();
+      try {
+        const startDateTimestamp = newEvent.startDate; // Convert Date to Firestore Timestamp
+        const endDateTimestamp = newEvent.endDate; // Convert Date to Firestore Timestamp
+        await addDoc(eventCollectionRef, {
+          title: newEvent.title,
+          startDate: startDateTimestamp,
+          endDate: endDateTimestamp,
+          startTime: newEvent.startTime,
+          endTime: newEvent.endTime,
+          description: newEvent.description,
+          capacity: newEvent.capacity,
+        });
+        const adjustedEndDate = addDays(newEvent.endDate, 1);
+        setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
+        clearEventData();
+      } catch (err) {
+        console.error(err);
+      }
     }
-  }
+  };
 
   const handleCancel = () => {
     clearEventData();
