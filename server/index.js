@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
-app.post('/create-checkout-session', cors(),async (req, res) => {
+app.post('/create-donate-checkout-session', cors(),async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         line_items: [
             {
@@ -22,8 +22,8 @@ app.post('/create-checkout-session', cors(),async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `https://example.com/`, // change to handle firebase update
-        cancel_url: `https://example.com/`,  // change to handle firebase update
+        success_url: `http://localhost:3000/donation-payment-success`, // change based on hosted url
+        cancel_url: `http://localhost:3000/`,  // change based on hosted url
     });
 
     res.redirect(303, session.url);
@@ -39,8 +39,8 @@ app.post('/create-dues-checkout-session', cors(),async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `https://example.com/`, // change to handle firebase update
-        cancel_url: `https://example.com/`,  // change to handle firebase update
+        success_url: `http://localhost:3000/dues-payment-success`, // change based on hosted url
+        cancel_url: `http://localhost:3000/`,  // change based on hosted url
     });
 
     res.redirect(303, session.url);

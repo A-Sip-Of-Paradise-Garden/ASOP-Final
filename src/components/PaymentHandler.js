@@ -1,25 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import asopImage from '../assets/home/asop_img1.png';
-
-const ProductDisplay = () => (
-    <section>
-            <div className={"align-center"}>
-                <img
-                    src={asopImage}
-                    alt=""
-                />
-            </div>
-        <div>
-            <h3>Donate Below!</h3>
-        </div>
-        <form action="http://localhost:4000/create-checkout-session" method="POST">
-            <button className="donateButton">
-                Donate!
-            </button>
-        </form>
-    </section>
-);
+import DonationPage from "../pages/Donate";
 
 const Message = ({ message }) => (
     <section>
@@ -27,7 +8,7 @@ const Message = ({ message }) => (
     </section>
 );
 
-export default function PaymentUpdate() {
+export default function PaymentHandler() {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
@@ -47,6 +28,6 @@ export default function PaymentUpdate() {
     return message ? (
         <Message message={message} />
     ) : (
-        <ProductDisplay />
+        <DonationPage />
     );
 }

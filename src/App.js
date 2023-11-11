@@ -10,8 +10,10 @@ import CreateProfileForm from "./components/CreateProfileForm";
 import Profile from "./pages/Profile";
 import MembersPage from "./pages/Members";
 import EventsPage from "./pages/Events"
-import Payment from "./pages/Payment"
 import Contact from "./pages/Contactus";
+import PaymentHandler from "./components/PaymentHandler";
+import DuesPaymentSuccess from "./pages/DuesPaymentSuccess";
+import DonationPaymentSuccess from "./pages/DonationPaymentSuccess";
 
 const App = () => {
   const { UNAUTHENTICATED, PROTECTED, ADMIN } = AUTH_TYPES;
@@ -61,16 +63,24 @@ const App = () => {
               />
             <Route
                 path="/payment"
-                element={<Payment />}
+                element={<PaymentHandler />}
             />
-              <Route
+            <Route
                 path="/events"
                 element={<EventsPage />}
-              />
-              <Route
+            />
+            <Route
                 path="/contact"
                 element={<Contact />}
-              />
+            />
+            <Route
+                path="/dues-payment-success"
+                element={<DuesPaymentSuccess />}
+            />
+            <Route
+                path="/donation-payment-success"
+                element={<DonationPaymentSuccess />}
+            />
             </>
           )}
           <Route path="*" element={<h1>404 Page Not Found</h1>} />
