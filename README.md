@@ -27,8 +27,12 @@
   - New notifications property added to user profiles.
    - Users are able to toggle the property on their profiles page.
    - When turned on, users will receive notifications when board members create/delete events.
+  - Members now have the ability to pay dues
+   - Once paid, their status will update in firebase until the next payment is due (annually)
 ### Improvements
-  - Removed age property on registration. Age is now calculated from date of birth, that way users have one less property to complete when signing up. 
+  - Removed age property on registration. Age is now calculated from date of birth, that way users have one less property to complete when signing up.
+  - Added firebase functionality to creating events. They will now be stored in the database when created
+  - Added some animation effects
 ### Bug Fixes
   - 
 ### Known Issues
