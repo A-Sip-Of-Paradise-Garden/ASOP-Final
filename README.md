@@ -34,7 +34,7 @@
   - Added firebase functionality to creating events. They will now be stored in the database when created
   - Added some animation effects
 ### Bug Fixes
-N/A
+- Fixed an issue in the members page where infinite requests were being made to firebase due to an updating variable in the useEffect hook.
 ### Known Issues
 N/A
 
