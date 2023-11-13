@@ -21,10 +21,22 @@
   4. For test card info, use "424242" repeatedly.
 
 # Release Notes:
-## v0.1.0
+
+## v0.3
 ### Features
-  - Added basic user login fetching functionality
-  - Added authentication boilerplate
+  - Created the home page for the website
+  - Created the contact us page for the website
+  - Created the events page that allows for board members to manage events and allows for members to view / RSVP for events
+  - Created payments page through Stripe
+### Bug Fixes
+  - Fixed a bug regarding global styling
+### Known Issues
+N/A
+
+## v0.2
+### Features
+  - Finished the ability to sign up for an account and log in to the created account
+  - Finished a fully functional profile page that showcases information including name, age, birthday, gender, phone #, profile picture along with the ability to update it.
 ### Bug Fixes
 N/A
 ### Known Issues
@@ -39,24 +51,11 @@ N/A
 ### Known Issues
 N/A
 
-## v0.2
+## v0.1.0
 ### Features
-  - Finished the ability to sign up for an account and log in to the created account
-  - Finished a fully functional profile page that showcases information including name, age, birthday, gender, phone #, profile picture along with the ability to update it.
+  - Added basic user login fetching functionality
+  - Added authentication boilerplate
 ### Bug Fixes
 N/A
 ### Known Issues
 N/A
-
-## v0.3
-### Features
-  - Created the home page for the website
-  - Created the contact us page for the website
-  - Created the events page that allows for board members to manage events and allows for members to view / RSVP for events
-  - Created payments page through Stripe
-### Bug Fixes
-  - Fixed a bug regarding global styling
-### Known Issues
-N/A
-
-
