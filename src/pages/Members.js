@@ -19,7 +19,7 @@ const MembersPage = () => {
       setUserProfiles(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getUserProfiles();
-  }, [usersCollectionRef]);
+  }, []);
 
   const filteredUserProfiles = userProfiles.filter((userProfile) => {
     const { name, id } = userProfile;
