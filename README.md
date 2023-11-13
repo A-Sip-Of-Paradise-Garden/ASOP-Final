@@ -34,7 +34,7 @@
   - Added firebase functionality to creating events. They will now be stored in the database when created
   - Added some animation effects
 ### Bug Fixes
-  - 
+N/A
 ### Known Issues
 N/A
 
