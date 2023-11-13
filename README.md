@@ -24,7 +24,11 @@
 
 ## v0.4
 ### Features
-  - 
+  - New notifications property added to user profiles.
+   - Users are able to toggle the property on their profiles page.
+   - When turned on, users will receive notifications when board members create/delete events.
+### Improvements
+  - Removed age property on registration. Age is now calculated from date of birth, that way users have one less property to complete when signing up. 
 ### Bug Fixes
   - 
 ### Known Issues
