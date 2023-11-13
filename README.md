@@ -22,6 +22,14 @@
 
 # Release Notes:
 
+## v0.4
+### Features
+  - 
+### Bug Fixes
+  - 
+### Known Issues
+N/A
+
 ## v0.3
 ### Features
   - Created the home page for the website
