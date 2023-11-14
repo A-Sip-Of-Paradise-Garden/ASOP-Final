@@ -99,26 +99,26 @@ html, body, #root {
 
 .cancel-button {
   border-radius: 25px;
-  background-color: red;
+  background-color: #cf1b1b;
   font-weight: bold;
   color: white;
   width: 71px;
 }
 
 .cancel-button:hover {
-  background-color: #cf1b1b
+  background-color: darkred;
 }
 
 .events-delete-button {
   border-radius: 25px;
   width: 70px;
   color: white;
-  background-color: red;
+  background-color: #cf1b1b;
   margin-top: 10px;
 }
 
 .events-delete-button:hover {
-  background-color: #cf1b1b
+  background-color: darkred;
 }
 
 .calendar-event-returns {
