@@ -6,7 +6,16 @@ const app = express();
 app.use(express.static('public'));
 const cors = require("cors")
 const bodyParser = require("body-parser")
-const admin = require("firebase-admin");
+
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
+const serviceAccount = require('./serviceAccount.json');
+
+initializeApp({
+    credential: cert(serviceAccount),
+});
+
+const db = getFirestore();
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.raw({type: "*/*"}))
@@ -24,8 +33,8 @@ app.post('/create-donate-checkout-session', cors(), async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:3000/donation-payment-success`, // change based on hosted url
-        cancel_url: `http://localhost:3000/`,  // change based on hosted url
+        success_url: `http://localhost:3000/donation-payment-success`, // Change based on hosted url
+        cancel_url: `http://localhost:3000/`,  // Change based on hosted url
     });
 
     res.redirect(303, session.url);
@@ -42,8 +51,8 @@ app.post('/create-dues-checkout-session', cors(),async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:3000/`, // change based on hosted url
-        cancel_url: `http://localhost:3000/`,  // change based on hosted url
+        success_url: `http://localhost:3000/`, // Change based on hosted url
+        cancel_url: `http://localhost:3000/`,  // Change based on hosted url
         metadata: {userId}
     });
 
@@ -71,6 +80,17 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (request, re
             console.log("💰 Payment captured!");
             const userId = dataObject.metadata.userId
             console.log(`Payment captured for user ${userId}`);
+            const db = getFirestore();
+            const currentDate = new Date();
+            const memberUntilDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1));
+
+            const userRef = db.collection('user-profiles').doc(userId);
+            await userRef.update({
+                memberUntil: memberUntilDate,
+                duesPaid: true
+            });
+
+            console.log("firestore worked?")
 
 
             break;
