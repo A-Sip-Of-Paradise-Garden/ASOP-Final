@@ -8,11 +8,12 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.raw({type: "*/*"}))
 app.use(bodyParser.json())
 
 app.use(cors())
 
-app.post('/create-donate-checkout-session', cors(),async (req, res) => {
+app.post('/create-donate-checkout-session', cors(), async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         line_items: [
             {
@@ -39,13 +40,38 @@ app.post('/create-dues-checkout-session', cors(),async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:3000/dues-payment-success`, // change based on hosted url
+        success_url: `http://localhost:3000/`, // change based on hosted url
         cancel_url: `http://localhost:3000/`,  // change based on hosted url
     });
 
     res.redirect(303, session.url);
 });
 
+const endpointSecret = "whsec_2cebb8a846dc3335ee2a86a7b571fc6e8018de26a93e5438d3e96840df487eb2";
+
+app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+    const sig = request.headers['stripe-signature'];
+
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    } catch (err) {
+        response.status(400).send(`Webhook Error: ${err.message}`);
+        console.log(err)
+        return;
+    }
+
+    switch (event.type) {
+        case 'charge.succeeded':
+            const paymentIntentSucceeded = event.data.object;
+            console.log("💰 Payment captured!");
+            break;
+        default:
+            console.log(`Unhandled event type ${event.type}`);
+    }
+    response.send();
+});
 app.listen( 4000, () => {
     console.log("Sever is listening on port 4000")
 })
