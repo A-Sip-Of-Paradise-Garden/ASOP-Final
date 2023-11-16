@@ -15,8 +15,6 @@ initializeApp({
     credential: cert(serviceAccount),
 });
 
-const db = getFirestore();
-
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.raw({type: "*/*"}))
 app.use(bodyParser.json())
