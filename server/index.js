@@ -6,6 +6,7 @@ const app = express();
 app.use(express.static('public'));
 const cors = require("cors")
 const bodyParser = require("body-parser")
+const admin = require("firebase-admin");
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.raw({type: "*/*"}))
@@ -31,6 +32,7 @@ app.post('/create-donate-checkout-session', cors(), async (req, res) => {
 });
 
 app.post('/create-dues-checkout-session', cors(),async (req, res) => {
+    const userId = req.body.userId; // Retrieve the user ID from the request
     const session = await stripe.checkout.sessions.create({
         line_items: [
             {
@@ -42,6 +44,7 @@ app.post('/create-dues-checkout-session', cors(),async (req, res) => {
         mode: 'payment',
         success_url: `http://localhost:3000/`, // change based on hosted url
         cancel_url: `http://localhost:3000/`,  // change based on hosted url
+        metadata: {userId}
     });
 
     res.redirect(303, session.url);
@@ -49,7 +52,7 @@ app.post('/create-dues-checkout-session', cors(),async (req, res) => {
 
 const endpointSecret = "whsec_2cebb8a846dc3335ee2a86a7b571fc6e8018de26a93e5438d3e96840df487eb2";
 
-app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+app.post('/webhook', express.raw({type: 'application/json'}), async (request, response) => {
     const sig = request.headers['stripe-signature'];
 
     let event;
@@ -63,9 +66,13 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
     }
 
     switch (event.type) {
-        case 'charge.succeeded':
-            const paymentIntentSucceeded = event.data.object;
+        case 'checkout.session.completed':
+            const dataObject = event.data.object;
             console.log("💰 Payment captured!");
+            const userId = dataObject.metadata.userId
+            console.log(`Payment captured for user ${userId}`);
+
+
             break;
         default:
             console.log(`Unhandled event type ${event.type}`);
