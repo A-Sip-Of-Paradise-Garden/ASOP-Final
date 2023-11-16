@@ -19,6 +19,9 @@
   2. In the src terminal, run "npm start" in order to start the local webpage
   3. In the server terminal, run "node index.js" in order to start the REST API
   4. For test card info, use "424242" repeatedly.
+ 
+- Make sure to grab the secret key file from the ASOP-Test Firestore if you're going to be testing the Stripe dues payment feature
+  1. It can be located [here.](https://console.cloud.google.com/iam-admin/serviceaccounts/details/113165166929441828383/keys?project=asop-test&supportedpurview=project)
 
 # Release Notes:
 
