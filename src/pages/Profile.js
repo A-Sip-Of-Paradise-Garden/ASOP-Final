@@ -37,6 +37,7 @@ const Profile = () => {
         className="rounded-full max-h-[15rem] max-w-[15rem] w-full border-2 object-cover"
       />
       <form action="http://localhost:4000/create-dues-checkout-session" method="POST">
+          <input type="hidden" name="userId" value={user.uid} />
           <button className="duesButton">
             Pay Dues!
           </button>
