@@ -7,6 +7,7 @@ import home_banner_bgd from "../../assets/home/home_banner_bgd.png";
 import Intro from "../Home/Intro";
 import About from "../Home/About";
 import Contact from "./Contact";
+import Footer from "./Footer";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -43,6 +44,7 @@ const Home = () => {
       <Intro />
       <About />
       <Contact />
+      <Footer />
     </div>
   );
 };

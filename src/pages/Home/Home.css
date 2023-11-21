@@ -195,6 +195,39 @@ body {
     font-size: 1.3rem;
     padding: 0.5rem 1rem;
 }
+/* This is the style for the Footer section */
+.footer-wrapper {
+  margin: 6rem 0rem;
+  display: flex;
+  margin-top: 10rem;
+}
+.footer-logo-container {
+  max-width: 150px;
+}
+.footer-icons {
+  margin: 0.5rem 3.5rem;
+}
+.footer-icons svg {
+  font-size: 1.5rem;
+  margin-right: 1.25rem;
+  color: #585858;
+}
+.footer-section-two {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.footer-section-columns {
+  display: flex;
+  flex-direction: column;
+  min-width: 190px;
+}
+.footer-section-columns span {
+  margin: 0.25rem 0rem;
+  font-weight: 600;
+  color: #4c4c4c;
+  cursor: pointer;
+}
 /* This is the style for all the images and texts. */
 @media (max-width: 800px) {
     .home-bannerImage-container {
@@ -261,6 +294,16 @@ body {
       padding: 0.5rem 1rem !important;
       margin-bottom: 0.8rem !important;
       text-align: center;
+    }
+    .footer-wrapper {
+      flex-direction: column;
+    }
+    .footer-section-two {
+      flex-direction: column;
+      margin-top: 2rem;
+    }
+    .footer-section-columns {
+      margin: 1rem 0rem;
     }
     .App {
       max-width: 95vw;
