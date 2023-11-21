@@ -68,6 +68,7 @@ export const AuthContextProvider = ({ children }) => {
         profilePicture: fileLocation,
         notifications: true,
         email: user.email,
+        isAdmin: false,
       });
       window.location.reload();
     } catch (err) {
