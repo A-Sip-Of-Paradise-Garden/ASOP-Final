@@ -8,6 +8,7 @@ import Intro from "../Home/Intro";
 import About from "../Home/About";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import Slider from "./Slider";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -43,6 +44,7 @@ const Home = () => {
       </div>
       <Intro />
       <About />
+      <Slider />
       <Contact />
       <Footer />
     </div>
