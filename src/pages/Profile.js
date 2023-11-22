@@ -11,13 +11,20 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "../components/Button";
 import { doc, updateDoc } from "firebase/firestore";
-import "../App.css"
+import { AiFillCheckCircle } from "react-icons/ai";
 
 const Profile = () => {
   const { user, userProfile } = UserAuth();
   const [profilePictureImg, setProfilePictureImg] = useState("");
-  const { name, dateOfBirth, gender, phoneNumber, profilePicture, notifications } =
-    userProfile;
+  const {
+    name,
+    dateOfBirth,
+    gender,
+    phoneNumber,
+    profilePicture,
+    notifications,
+    memberUntil,
+  } = userProfile;
 
   useEffect(() => {
     getDownloadURL(ref(storage, profilePicture))
@@ -36,12 +43,22 @@ const Profile = () => {
         alt="Profile"
         className="rounded-full max-h-[15rem] max-w-[15rem] w-full border-2 object-cover"
       />
-      <form action="http://localhost:4000/create-dues-checkout-session" method="POST">
+      {memberUntil && new Date() < new Date(memberUntil) ? (
+        <span className="flex  text-lg items-center border rounded p-3 ">
+          You have an active membership
+          <div className="text-emerald-400 text-2xl ml-1">
+            <AiFillCheckCircle />
+          </div>
+        </span>
+      ) : (
+        <form
+          action="http://localhost:4000/create-dues-checkout-session"
+          method="POST"
+        >
           <input type="hidden" name="userId" value={user.uid} />
-          <button className="duesButton">
-            Pay Dues!
-          </button>
-      </form>
+          <Button className="px-4 py-2" type="submit">Pay Membership Fee</Button>
+        </form>
+      )}
       <DisplayComponent label="User ID" value={user.uid} />
       <UpdateComponent
         label="Name"
@@ -205,7 +222,7 @@ const UpdateComponent = ({
           type={type}
           className="ml-auto border-2 rounded accent-emerald-500 h-5 w-5"
           checked={value}
-          onChange={(e) => setValue(s => !s)}
+          onChange={(e) => setValue((s) => !s)}
         />
       );
       break;
