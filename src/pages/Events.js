@@ -44,6 +44,7 @@ const EventsPage = () => {
     title: "",
     description: "",
     capacity: 0,
+    maxCapacity: 0,
     startDate: "",
     endDate: "",
     startTime: selectedStartTime,
@@ -76,38 +77,6 @@ const EventsPage = () => {
     }
   };
 
-  // const handleAddEvent = () => {
-  //   if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
-  //     return;
-  //   } else {
-  //     const adjustedEndDate = addDays(newEvent.endDate, 1);
-  //     setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
-  //     clearEventData();
-  //   }
-  //}
-
-  // const handleAddEvent = async () => {
-  //   if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
-  //     return;
-  //   } else {
-  //     try {
-  //       await addDoc(eventCollectionRef, {
-  //         title: newEvent.title,
-  //         startDate: newEvent.startDate,
-  //         endDate: newEvent.endDate,
-  //         startTime: newEvent.startTime,
-  //         endTime: newEvent.endTime,
-  //         description: newEvent.description,
-  //         capacity: newEvent.capacity
-  //       })
-  //       const adjustedEndDate = addDays(newEvent.endDate, 1);
-  //       setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
-  //       clearEventData();
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  // }
   const handleAddEvent = async () => {
     if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
       return;
@@ -123,6 +92,7 @@ const EventsPage = () => {
           endTime: newEvent.endTime,
           description: newEvent.description,
           capacity: newEvent.capacity,
+          maxCapacity: newEvent.maxCapacity
         });
         const adjustedEndDate = addDays(newEvent.endDate, 1);
         setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate, }]);
@@ -132,8 +102,6 @@ const EventsPage = () => {
       }
     }
   };
-
-
 
   const handleCancel = () => {
     clearEventData();
@@ -145,6 +113,7 @@ const EventsPage = () => {
       title: "",
       description: "",
       capacity: 0,
+      maxCapacity: 0,
       startDate: "",
       endDate: "",
       startTime: "12:00",
@@ -200,6 +169,18 @@ const EventsPage = () => {
                 onChange={(e) => setNewEvent({
                   ...newEvent,
                   description: e.target.value 
+                })}
+              />
+            </div>
+            <div>
+              <input
+                className="event-capacity"
+                type="number"
+                placeholder="Add event capacity..."
+                value={newEvent.maxCapacity || ''}
+                onChange={(e) => setNewEvent({
+                  ...newEvent,
+                  maxCapacity: e.target.value
                 })}
               />
             </div>
@@ -276,8 +257,6 @@ const EventsPage = () => {
                 const eventDoc = doc(db, "events", event.id);
                 await deleteDoc(eventDoc);
                 const updatedEvents = allEvents.filter((e) => event.id !== e.id);
-                // setAllEvents(updatedEvents);
-                // const updatedEvents = allEvents.filter((e) => e !== event);
                 setAllEvents(updatedEvents);
               } catch (err) {
                 console.error(err);
@@ -285,15 +264,12 @@ const EventsPage = () => {
             }
             return (
               <div className="calender-event-returns">
-                {/* <div onClick={() => handleEventClick(event)}><span style={{ fontWeight: 'bold' }}>{event.title}</span></div> */}
                 <Popup contentStyle={{ width: '40%' }} trigger={<button><span style={{ fontWeight: 'bold' }}>{event.title}</span></button>}>
                   <div><span style={{ fontWeight: 'bold' }}>{formatTime(event.startTime)} - {formatTime(event.endTime)}</span></div>
+                  <div><span style={{ fontWeight: 'bold' }}>Seats Available: {event.maxCapacity - event.capacity}</span></div>
                   <div>{event.description}</div>
                   <button className="events-delete-button" onClick={handleDeleteEvent}>Delete</button>
                 </Popup>
-                <div>{event.description}</div>
-                {/* <div>{formatTime(event.startTime)} - {formatTime(event.endTime)}</div> */}
-                <button className="events-delete-button" onClick={ handleDeleteEvent }>Delete</button>
               </div>
             );
           },
