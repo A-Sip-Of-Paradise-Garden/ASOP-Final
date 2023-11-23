@@ -15,7 +15,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { UserAuth } from "../context/AuthContext";
 import { db, storage } from "../config/firebase";
-import { doc, getDocs, addDoc, updateDoc, collection } from "firebase/firestore";
+import { doc, getDocs, addDoc, deleteDoc, updateDoc, collection } from "firebase/firestore";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US")
@@ -44,6 +44,7 @@ const EventsPage = () => {
     title: "",
     description: "",
     capacity: 0,
+    maxCapacity: 0,
     startDate: "",
     endDate: "",
     startTime: selectedStartTime,
@@ -55,19 +56,6 @@ const EventsPage = () => {
     getEventList()
   }, []);
 
-  // const getEventList = async () => {
-  //   try {
-  //     const data = await getDocs(eventCollectionRef)
-  //     const filteredData = data.docs.map((doc) => ({
-  //       ...doc.data(),
-  //       id: doc.id,
-  //     }))
-  //     setAllEvents(filteredData)
-  //     console.log(allEvents)
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
   const getEventList = async () => {
     try {
       const data = await getDocs(eventCollectionRef);
@@ -83,43 +71,12 @@ const EventsPage = () => {
         };
       });
       setAllEvents(filteredData);
+      console.log(filteredData);
     } catch (err) {
       console.error(err);
     }
   };
 
-  // const handleAddEvent = () => {
-  //   if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
-  //     return;
-  //   } else {
-  //     const adjustedEndDate = addDays(newEvent.endDate, 1);
-  //     setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
-  //     clearEventData();
-  //   }
-  //}
-
-  // const handleAddEvent = async () => {
-  //   if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
-  //     return;
-  //   } else {
-  //     try {
-  //       await addDoc(eventCollectionRef, {
-  //         title: newEvent.title,
-  //         startDate: newEvent.startDate,
-  //         endDate: newEvent.endDate,
-  //         startTime: newEvent.startTime,
-  //         endTime: newEvent.endTime,
-  //         description: newEvent.description,
-  //         capacity: newEvent.capacity
-  //       })
-  //       const adjustedEndDate = addDays(newEvent.endDate, 1);
-  //       setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
-  //       clearEventData();
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  // }
   const handleAddEvent = async () => {
     if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
       return;
@@ -127,7 +84,7 @@ const EventsPage = () => {
       try {
         const startDateTimestamp = newEvent.startDate; // Convert Date to Firestore Timestamp
         const endDateTimestamp = newEvent.endDate; // Convert Date to Firestore Timestamp
-        await addDoc(eventCollectionRef, {
+        const newEventDocRef = await addDoc(eventCollectionRef, {
           title: newEvent.title,
           startDate: startDateTimestamp,
           endDate: endDateTimestamp,
@@ -135,9 +92,10 @@ const EventsPage = () => {
           endTime: newEvent.endTime,
           description: newEvent.description,
           capacity: newEvent.capacity,
+          maxCapacity: newEvent.maxCapacity
         });
         const adjustedEndDate = addDays(newEvent.endDate, 1);
-        setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate }]);
+        setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate, }]);
         clearEventData();
       } catch (err) {
         console.error(err);
@@ -155,10 +113,11 @@ const EventsPage = () => {
       title: "",
       description: "",
       capacity: 0,
+      maxCapacity: 0,
       startDate: "",
       endDate: "",
       startTime: "12:00",
-      endTime: "12:00"
+      endTime: "12:00",
     });
   }
 
@@ -210,6 +169,18 @@ const EventsPage = () => {
                 onChange={(e) => setNewEvent({
                   ...newEvent,
                   description: e.target.value 
+                })}
+              />
+            </div>
+            <div>
+              <input
+                className="event-capacity"
+                type="number"
+                placeholder="Add event capacity..."
+                value={newEvent.maxCapacity || ''}
+                onChange={(e) => setNewEvent({
+                  ...newEvent,
+                  maxCapacity: e.target.value
                 })}
               />
             </div>
@@ -281,21 +252,24 @@ const EventsPage = () => {
         }}
         components={{
           event: ({ event }) => {
-            const handleDeleteEvent = () => {
-              const updatedEvents = allEvents.filter((e) => e !== event);
-              setAllEvents(updatedEvents);
+            const handleDeleteEvent = async () => {
+              try {
+                const eventDoc = doc(db, "events", event.id);
+                await deleteDoc(eventDoc);
+                const updatedEvents = allEvents.filter((e) => event.id !== e.id);
+                setAllEvents(updatedEvents);
+              } catch (err) {
+                console.error(err);
+              }
             }
             return (
               <div className="calender-event-returns">
-                {/* <div onClick={() => handleEventClick(event)}><span style={{ fontWeight: 'bold' }}>{event.title}</span></div> */}
                 <Popup contentStyle={{ width: '40%' }} trigger={<button><span style={{ fontWeight: 'bold' }}>{event.title}</span></button>}>
                   <div><span style={{ fontWeight: 'bold' }}>{formatTime(event.startTime)} - {formatTime(event.endTime)}</span></div>
+                  <div><span style={{ fontWeight: 'bold' }}>Seats Available: {event.maxCapacity - event.capacity}</span></div>
                   <div>{event.description}</div>
                   <button className="events-delete-button" onClick={handleDeleteEvent}>Delete</button>
                 </Popup>
-                <div>{event.description}</div>
-                {/* <div>{formatTime(event.startTime)} - {formatTime(event.endTime)}</div> */}
-                <button className="events-delete-button" onClick={handleDeleteEvent}>Delete</button>
               </div>
             );
           },
