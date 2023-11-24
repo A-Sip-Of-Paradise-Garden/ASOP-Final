@@ -15,7 +15,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { UserAuth } from "../context/AuthContext";
 import { db, storage } from "../config/firebase";
-import { doc, getDocs, addDoc, deleteDoc, updateDoc, collection } from "firebase/firestore";
+import { doc, getDocs, addDoc, deleteDoc, collection } from "firebase/firestore";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US")
@@ -34,12 +34,9 @@ const events = [];
 const EventsPage = () => {
   const [selectedStartTime, setSelectedStartTime] = useState('12:00');
   const [selectedEndTime, setSelectedEndTime] = useState('12:00');
-
   const [allEvents, setAllEvents] = useState(events);
   const [formVisible, setFormVisible] = useState(false);
-
   const { user, userProfile } = UserAuth();
-
   const [newEvent, setNewEvent] = useState({
     title: "",
     description: "",
@@ -50,8 +47,9 @@ const EventsPage = () => {
     startTime: selectedStartTime,
     endTime: selectedEndTime,
   });
-  const eventCollectionRef = collection(db, "events")
 
+  const eventCollectionRef = collection(db, "events")
+  
   useEffect(() => {
     getEventList()
   }, []);
