@@ -6,6 +6,7 @@ const slideStyles = {
   borderRadius: "10px",
   backgroundSize: "cover",
   backgroundPosition: "center",
+  justifyContent: "center",
 };
 
 const rightArrowStyles = {
@@ -33,6 +34,7 @@ const leftArrowStyles = {
 const sliderStyles = {
   position: "relative",
   height: "100%",
+  justifyContent: "center",
 };
 
 const dotsContainerStyles = {
@@ -59,7 +61,7 @@ const ImageSlider = ({ slides }) => {
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
-  
+
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };

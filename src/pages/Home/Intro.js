@@ -14,7 +14,7 @@ const Intro = () => {
     });
     
     return (
-        <div className="intro-section-container">
+        <div className="intro-section-container" id="intro">
             <div className="intro-bgd-image-container">
                 <img src={intro_bgd} alt="" />
             </div>

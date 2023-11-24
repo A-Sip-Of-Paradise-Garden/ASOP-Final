@@ -6,6 +6,10 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Slider = () => {
+    useEffect(()=> {
+        AOS.init({duration: 2000});
+    });
+
   const slides = [
     { url: require('../../assets/slider/1.jpeg'), title: "img1" },
     { url: require('../../assets/slider/2.jpeg'), title: "img2" },
@@ -32,11 +36,12 @@ const Slider = () => {
   const containerStyles = {
     width: "1280px",
     height: "720px",
-    margin: "0 auto",
+    margin: "3rem",
+    maxWidth: "100%",
   };
 
   return (
-    <div className="slider-page" data-aos="zoom-in">
+    <div className="slider-page" id="members" data-aos="zoom-in">
       <div style={containerStyles}>
         <ImageSlider slides={slides} />
       </div>

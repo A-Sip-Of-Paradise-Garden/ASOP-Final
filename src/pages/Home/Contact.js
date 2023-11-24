@@ -13,7 +13,7 @@ const Contact = () => {
   });
 
   return (
-    <div className="contact-page-wrapper" data-aos="zoom-in">
+    <div className="contact-page-wrapper" id="contact" data-aos="zoom-in">
       <h1 className="primary-heading">Contact Us</h1>
       <h1 className="primary-text">Please feel free to email us.</h1>
       <div className="contact-form-container">

@@ -31,7 +31,7 @@ const About = () => {
     });
     
     return (
-        <div className="about-section-wrapper" data-aos="zoom-in">
+        <div className="about-section-wrapper" id="aboutUs" data-aos="zoom-in">
             <div className="about-bgd-image-container">
                 <img src={about_bgd} alt="" />
             </div>
