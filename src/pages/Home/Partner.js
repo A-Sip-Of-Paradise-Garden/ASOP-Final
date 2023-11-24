@@ -20,6 +20,9 @@ const Partner = () => {
 
   return (
     <div className="partner-logos" data-aos="zoom-in">
+        <div className="partner-text">
+            <h1 className="primary-heading">Partners</h1>
+        </div>
         <div className="logos-slide">
             <img src={bloom_bar_logo} alt="" />
             <img src={branca_logo} alt="" />

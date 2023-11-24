@@ -41,7 +41,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="slider-page" id="members" data-aos="zoom-in">
+    <div className="slider-page" id="gallery" data-aos="zoom-in">
       <div style={containerStyles}>
         <ImageSlider slides={slides} />
       </div>
