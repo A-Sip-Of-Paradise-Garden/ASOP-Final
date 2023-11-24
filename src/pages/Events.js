@@ -60,6 +60,7 @@ const EventsPage = () => {
 
 
  useEffect(() => {
+   console.log(userProfile.name);
    getEventList();
    const userRSVPs = {};
    setRSVPState(userRSVPs);
@@ -213,7 +214,7 @@ const EventsPage = () => {
    return `${formattedHours}:${mm < 10 ? '0' : ''}${mm} ${ampm}`;
  };
 
- 
+
  return (
    <div className="events-calendar-page">
      <div className="title-calendar">
