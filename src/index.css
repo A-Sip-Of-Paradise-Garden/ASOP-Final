@@ -39,7 +39,7 @@ html, body, #root {
 }
 
 .add-event-button:hover {
-  background-color: #51a66c;
+  background-color: #2eaf81;
 }
 
 .add-event-input {
@@ -127,6 +127,28 @@ html, body, #root {
 
 .events-delete-button:hover {
   background-color: #cf1b1b;
+}
+
+.events-rsvp-button {
+  border-radius: 5px;
+  width: 70px;
+  color: black;
+  background-color: #38d49c;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.events-rsvp-button:hover {
+  background-color: #2eaf81;
+}
+
+.events-cancelrsvp-button {
+  border-radius: 5px;
+  width: 80px;
+  color: black;
+  background-color: #38d49c;
+  margin-top: 10px;
+  margin-right: 5px;
 }
 
 .calendar-event-returns {

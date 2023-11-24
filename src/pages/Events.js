@@ -13,9 +13,9 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { db } from "../config/firebase";
+import { doc, getDocs, addDoc, deleteDoc, updateDoc, collection } from "firebase/firestore";
 import { UserAuth } from "../context/AuthContext";
-import { db, storage } from "../config/firebase";
-import { doc, getDocs, addDoc, deleteDoc, collection } from "firebase/firestore";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US")
@@ -36,7 +36,7 @@ const EventsPage = () => {
   const [selectedEndTime, setSelectedEndTime] = useState('12:00');
   const [allEvents, setAllEvents] = useState(events);
   const [formVisible, setFormVisible] = useState(false);
-  const { user, userProfile } = UserAuth();
+  const { userProfile } = UserAuth();
   const [newEvent, setNewEvent] = useState({
     title: "",
     description: "",
@@ -47,20 +47,25 @@ const EventsPage = () => {
     startTime: selectedStartTime,
     endTime: selectedEndTime,
   });
+  const [rsvpState, setRSVPState] = useState({});
 
-  const eventCollectionRef = collection(db, "events")
-  
+  const eventCollectionRef = collection(db, "events");
+  const isAdminUser = userProfile && userProfile.isAdmin;
+
   useEffect(() => {
-    getEventList()
-  }, []);
+    getEventList();
+
+    const userRSVPs = {};
+    setRSVPState(userRSVPs);
+  }, [userProfile]);
 
   const getEventList = async () => {
     try {
       const data = await getDocs(eventCollectionRef);
       const filteredData = data.docs.map((doc) => {
         const firestoreData = doc.data();
-        const startDate = firestoreData.startDate.toDate(); // Convert Firestore Timestamp to Date
-        const endDate = firestoreData.endDate.toDate(); // Convert Firestore Timestamp to Date
+        const startDate = firestoreData.startDate.toDate(); 
+        const endDate = firestoreData.endDate.toDate(); 
         return {
           ...firestoreData,
           id: doc.id,
@@ -69,7 +74,6 @@ const EventsPage = () => {
         };
       });
       setAllEvents(filteredData);
-      console.log(filteredData);
     } catch (err) {
       console.error(err);
     }
@@ -80,8 +84,8 @@ const EventsPage = () => {
       return;
     } else {
       try {
-        const startDateTimestamp = newEvent.startDate; // Convert Date to Firestore Timestamp
-        const endDateTimestamp = newEvent.endDate; // Convert Date to Firestore Timestamp
+        const startDateTimestamp = newEvent.startDate; 
+        const endDateTimestamp = newEvent.endDate;
         const newEventDocRef = await addDoc(eventCollectionRef, {
           title: newEvent.title,
           startDate: startDateTimestamp,
@@ -119,6 +123,63 @@ const EventsPage = () => {
     });
   }
 
+  const getRSVPData = async () => {
+    try {
+      const rsvpData = 
+      setRSVPState(rsvpData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleRSVP = async (event) => {
+    try {
+      if (event.capacity < event.maxCapacity) {
+        const eventDocRef = doc(db, "events", event.id);
+
+        await updateDoc(eventDocRef, {
+          capacity: event.capacity + 1,
+        });
+
+        const updatedEvents = allEvents.map((e) =>
+          e.id === event.id ? { ...e, capacity: e.capacity + 1 } : e
+        );
+        setAllEvents(updatedEvents);
+
+        setRSVPState((prevState) => ({
+          ...prevState,
+          [event.id]: true,
+        }));
+      } else {
+        console.warn("Event is already at maximum capacity.");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleCancelRSVP = async (event) => {
+    try {
+      const eventDocRef = doc(db, "events", event.id);
+  
+      await updateDoc(eventDocRef, {
+        capacity: event.capacity - 1,
+      });
+  
+      const updatedEvents = allEvents.map((e) =>
+        e.id === event.id ? { ...e, capacity: e.capacity - 1 } : e
+      );
+      setAllEvents(updatedEvents);
+  
+      setRSVPState((prevState) => ({
+        ...prevState,
+        [event.id]: false,
+      }));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const formatTime = (time) => {
     const [hours, minutes] = time.split(':');
     const hh = parseInt(hours, 10);
@@ -128,7 +189,6 @@ const EventsPage = () => {
     if (hh >= 12) {
       ampm = 'PM';
     }
-
     const formattedHours = hh % 12 || 12;
     return `${formattedHours}:${mm < 10 ? '0' : ''}${mm} ${ampm}`;
   };
@@ -140,7 +200,7 @@ const EventsPage = () => {
       </div>
       <div className="title-and-inputs">
         <div className="title-and-button">
-          {!formVisible && (
+          {!formVisible && isAdminUser && (
             <button className="add-event-button" onClick={() => setFormVisible(true)}>Add Event</button>
           )}
         </div>
@@ -262,11 +322,32 @@ const EventsPage = () => {
             }
             return (
               <div className="calender-event-returns">
-                <Popup contentStyle={{ width: '40%' }} trigger={<button><span style={{ fontWeight: 'bold' }}>{event.title}</span></button>}>
+                <Popup contentStyle={{ width: '40%', whiteSpace: 'pre-line', overflowWrap: 'break-word' }} trigger={<button><span style={{ fontWeight: 'bold' }}>{event.title}</span></button>}>
                   <div><span style={{ fontWeight: 'bold' }}>{formatTime(event.startTime)} - {formatTime(event.endTime)}</span></div>
                   <div><span style={{ fontWeight: 'bold' }}>Seats Available: {event.maxCapacity - event.capacity}</span></div>
                   <div>{event.description}</div>
-                  <button className="events-delete-button" onClick={handleDeleteEvent}>Delete</button>
+                  {(
+                    rsvpState[event.id] ? (
+                      <button
+                        className="events-cancelrsvp-button"
+                        onClick={() => handleCancelRSVP(event)}
+                      >
+                        Unreserve
+                      </button>
+                    ) : (
+                      <button
+                        className="events-rsvp-button"
+                        onClick={() => handleRSVP(event)}
+                      >
+                        Reserve
+                      </button>
+                    )
+                  )}
+                  {isAdminUser && (
+                    <button className="events-delete-button" onClick={handleDeleteEvent}>
+                      Delete
+                    </button>
+                  )}
                 </Popup>
               </div>
             );
