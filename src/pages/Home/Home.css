@@ -219,8 +219,13 @@ body {
   flex-direction: column;
   min-width: 190px;
 }
+.footer-item {
+  margin: 0.25rem 1rem;
+  font-weight: 600;
+  color: #4c4c4c;
+}
 .footer-section-columns span {
-  margin: 0.25rem 0rem;
+  margin: 0.25rem 1rem;
   font-weight: 600;
   color: #4c4c4c;
   cursor: pointer;

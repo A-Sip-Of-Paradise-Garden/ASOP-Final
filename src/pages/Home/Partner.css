@@ -41,6 +41,12 @@
     animation-play-state: paused;
 }
 
+.partner-text {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2.5rem;
+}
+
 .logos-slide {
     display: inline-flex;
     animation: 20s loop infinite linear;
