@@ -1,4 +1,7 @@
 import React from "react";
+import { FiMail } from "react-icons/fi";
+import { FiInstagram } from "react-icons/fi";
+import { FiFacebook } from "react-icons/fi";
 
 const sendEmail = () => {
   window.location.href = 'mailto:${asipofparadisegarden@gmail.com}';
@@ -18,16 +21,21 @@ const Contact = () => {
         <p align="center">
         <h1 className ="primary-heading">Contact Us</h1>
 
-        <button className="secondary-button" onClick={sendEmail}>Send us an Email</button>
+        <button className="secondary-button" onClick={sendEmail}> 
+        Send us an Email!<FiMail /> {" "} 
+        </button>
         <br />
 
-        <h1 className ="primary-heading">Socials:</h1>
+        <h1 className ="primary-heading">Socials</h1>
 
-        <button className="secondary-button" onClick={redirectToFacebook}>Visit Our Facebook Page</button>
+        <button className="secondary-button" onClick={redirectToFacebook}>
+          Visit Our Facebook Page!<FiFacebook /> {" "} 
+          </button>
         <br />
-        <button className="secondary-button" onClick={redirectToIG}>Visit Our Instagram Page</button>
+        <button className="secondary-button" onClick={redirectToIG}>
+          Visit Our Instagram Page!<FiInstagram /> {" "} 
+          </button>
         <br />
-
         
 
         <h1 className ="primary-heading">Get Directions</h1>
