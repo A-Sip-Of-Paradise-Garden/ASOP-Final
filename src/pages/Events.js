@@ -59,12 +59,20 @@ const EventsPage = () => {
  const isAdminUser = userProfile && userProfile.isAdmin;
 
 
- useEffect(() => {
-   console.log(userProfile.name);
-   getEventList();
-   const userRSVPs = {};
-   setRSVPState(userRSVPs);
- }, [userProfile]);
+  useEffect(() => {
+    if (userProfile && userProfile.email) {
+      getEventList();
+      const storedRSVPState = JSON.parse(localStorage.getItem(`rsvpState_${userProfile.email}`)) || {};
+      setRSVPState(storedRSVPState);
+    }
+  }, [userProfile]);
+
+    // Clear RSVP state when the user logs out
+  useEffect(() => {
+    return () => {
+      setRSVPState({});
+    };
+  }, []);
 
 
  const getEventList = async () => {
@@ -160,6 +168,9 @@ const EventsPage = () => {
          ...prevState,
          [event.id]: true,
        }));
+
+       persistRSVPState(event.id, true);
+
      } else {
        console.warn("Event is already at maximum capacity.");
      }
@@ -196,10 +207,22 @@ const EventsPage = () => {
         [event.id]: false,
       }));
     }
+
+    persistRSVPState(event.id, true);
+
   } catch (err) {
     console.error(err);
   }
 };
+
+
+  const persistRSVPState = (eventId, isReserved) => {
+    if (userProfile && userProfile.email) {
+      const storedRSVPState = JSON.parse(localStorage.getItem(`rsvpState_${userProfile.email}`)) || {};
+      localStorage.setItem(`rsvpState_${userProfile.email}`, JSON.stringify({ ...storedRSVPState, [eventId]: isReserved }));
+    }
+  };
+
 
  const formatTime = (time) => {
    const [hours, minutes] = time.split(':');
@@ -348,18 +371,20 @@ const EventsPage = () => {
                  <div><span style={{ fontWeight: 'bold' }}>Event Time: </span>{formatTime(event.startTime)} - {formatTime(event.endTime)}</div>
                  <div><span style={{ fontWeight: 'bold' }}>Seats Available: </span>{event.maxCapacity - event.capacity}</div>
                  <div><span style={{ fontWeight: 'bold' }}>Description: </span>{event.description}</div>
-                 <div>
-                   <span style={{ fontWeight: 'bold' }}>Reserved Users:</span>
-                   {event.reservedUsers ? (
-                     <ul>
-                       {event.reservedUsers.map((user, index) => (
-                         <li key={index}>{user}</li>
-                       ))}
-                     </ul>
-                   ) : (
-                     <p>No users have reserved this event.</p>
-                   )}
-                 </div>
+                 {isAdminUser && (
+                    <div>
+                      <span style={{ fontWeight: 'bold' }}>Reserved Users:</span>
+                      {event.reservedUsers ? (
+                        <ul>
+                          {event.reservedUsers.map((user, index) => (
+                            <li key={index}>{user}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p>No users have reserved this event.</p>
+                      )}
+                    </div>
+                 )}
                  {(
                    rsvpState[event.id] ? (
                      <button
