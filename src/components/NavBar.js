@@ -29,7 +29,7 @@ export const URL_PATHS = [
     requiresAuth: true,
   },
   {
-    name: "Donate!",
+    name: "Donations",
     path: "/payment",
     requiresAuth: false,
   },
