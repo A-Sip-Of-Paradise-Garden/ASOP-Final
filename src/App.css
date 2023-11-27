@@ -37,20 +37,41 @@
   padding: 0;
 }
 
+.donate-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.donate-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: left;
+}
+
 .donateButton {
-  display: block;
-  font-size: 16px;
-  width: calc(100% - 30px);
-  height: 40px;
-  margin: 40px 15px 0;
-  background-color: #10b981;
-  box-shadow: 0 6px 9px #32325d0f, 0 2px 5px #00000014, inset 0 1px 0 #10b981;
-  border-radius: 4px;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 100ms ease-in-out;
-  will-change: transform, background-color, box-shadow;
+    display: block;
+    font-size: 16px;
+    height: 40px;
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: #10B981;
+    box-shadow: 0 6px 9px #32325d0f, 0 2px 5px #00000014, inset 0 1px 0 #10B981;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+    will-change: transform, background-color, box-shadow;
+    text-align: center;
+}
+
+.donateButton:hover {
+    background-color: #059669;
+    box-shadow: 0 6px 9px #32325d0f, 0 2px 5px #00000014, inset 0 1px 0 #059669;
 }
 
 .donateButton:active {
