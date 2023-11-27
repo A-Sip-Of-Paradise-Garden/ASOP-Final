@@ -7,18 +7,24 @@ import {
   deleteObject,
 } from "firebase/storage";
 import { db, storage } from "../config/firebase";
-import { capitalizeString } from "../helpers/stringUtils";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "../components/Button";
 import { doc, updateDoc } from "firebase/firestore";
-import "../App.css"
+import { AiFillCheckCircle } from "react-icons/ai";
 
 const Profile = () => {
   const { user, userProfile } = UserAuth();
   const [profilePictureImg, setProfilePictureImg] = useState("");
-  const { name, age, dateOfBirth, gender, phoneNumber, profilePicture } =
-    userProfile;
+  const {
+    name,
+    dateOfBirth,
+    gender,
+    phoneNumber,
+    profilePicture,
+    notifications,
+    memberUntil,
+  } = userProfile;
 
   useEffect(() => {
     getDownloadURL(ref(storage, profilePicture))
@@ -37,31 +43,33 @@ const Profile = () => {
         alt="Profile"
         className="rounded-full max-h-[15rem] max-w-[15rem] w-full border-2 object-cover"
       />
-      <form action="http://localhost:4000/create-dues-checkout-session" method="POST">
-          <button className="duesButton">
-            Pay Dues!
-          </button>
-      </form>
+      {memberUntil && new Date() < new Date(memberUntil) ? (
+        <span className="flex  text-lg items-center border rounded p-3 ">
+          You have an active membership
+          <div className="text-emerald-400 text-2xl ml-1">
+            <AiFillCheckCircle />
+          </div>
+        </span>
+      ) : (
+        <form
+          action="http://localhost:4000/create-dues-checkout-session"
+          method="POST"
+        >
+          <input type="hidden" name="userId" value={user.uid} />
+          <Button className="px-4 py-2" type="submit">Pay Membership Fee</Button>
+        </form>
+      )}
       <DisplayComponent label="User ID" value={user.uid} />
       <UpdateComponent
         label="Name"
         firebaseUserProperty="name"
         uid={user.uid}
-        initialValue={capitalizeString(name)}
+        initialValue={name}
         placeholder="Your name here..."
         key={"name"}
       />
       <UpdateComponent
-        label="Age"
-        firebaseUserProperty="age"
-        uid={user.uid}
-        initialValue={age}
-        type="number"
-        placeholder="Your age here..."
-        key={"age"}
-      />
-      <UpdateComponent
-        label="Date"
+        label="Date of Birth"
         firebaseUserProperty="dateOfBirth"
         uid={user.uid}
         initialValue={dateOfBirth}
@@ -85,6 +93,15 @@ const Profile = () => {
         type="tel"
         placeholder="Your phone number here..."
         key={"phone-number"}
+      />
+      <UpdateComponent
+        label="Notifications"
+        firebaseUserProperty="notifications"
+        uid={user.uid}
+        initialValue={notifications}
+        type="checkbox"
+        userProfile={userProfile}
+        key={"notifications"}
       />
       <UpdateComponent
         label="Profile Picture"
@@ -199,6 +216,16 @@ const UpdateComponent = ({
         />
       );
       break;
+    case "checkbox":
+      inputComponent = (
+        <input
+          type={type}
+          className="ml-auto border-2 rounded accent-emerald-500 h-5 w-5"
+          checked={value}
+          onChange={(e) => setValue((s) => !s)}
+        />
+      );
+      break;
     default:
       inputComponent = (
         <input
@@ -244,7 +271,7 @@ const UpdateComponent = ({
         </>
       ) : (
         <div className="flex justify-between">
-          <span className="text-lg">{value}</span>
+          <span className="text-lg">{`${value}`}</span>
           <button
             className="rounded hover:bg-emerald-400"
             type="button"

@@ -173,13 +173,10 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 10rem 0rem;
+    margin: 3rem 0rem;
 }
 .contact-form-container {
-    background-color: white;
-    max-width: 700px;
-    width: 100%;
-    margin-top: 1rem;
+    margin-top: 1rem 2rem;
     display: flex;
     align-items: center;
     padding: 1rem;
@@ -194,6 +191,44 @@ body {
     outline: none;
     font-size: 1.3rem;
     padding: 0.5rem 1rem;
+}
+/* This is the style for the Footer section */
+.footer-wrapper {
+  margin: 6rem 0rem;
+  display: flex;
+  margin-top: 10rem;
+}
+.footer-logo-container {
+  max-width: 150px;
+}
+.footer-icons {
+  margin: 0.5rem 3.5rem;
+}
+.footer-icons svg {
+  font-size: 1.5rem;
+  margin-right: 1.25rem;
+  color: #585858;
+}
+.footer-section-two {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.footer-section-columns {
+  display: flex;
+  flex-direction: column;
+  min-width: 190px;
+}
+.footer-item {
+  margin: 0.25rem 1rem;
+  font-weight: 600;
+  color: #4c4c4c;
+}
+.footer-section-columns span {
+  margin: 0.25rem 1rem;
+  font-weight: 600;
+  color: #4c4c4c;
+  cursor: pointer;
 }
 /* This is the style for all the images and texts. */
 @media (max-width: 800px) {
@@ -262,6 +297,16 @@ body {
       margin-bottom: 0.8rem !important;
       text-align: center;
     }
+    .footer-wrapper {
+      flex-direction: column;
+    }
+    .footer-section-two {
+      flex-direction: column;
+      margin-top: 2rem;
+    }
+    .footer-section-columns {
+      margin: 1rem 0rem;
+    }
     .App {
       max-width: 95vw;
     }
@@ -269,7 +314,7 @@ body {
 /* Style for the images. */
 @media (max-width: 600px) {
     .home-bannerImage-container,
-    .intro-background-image-container,
+    .intro-bgd-image-container,
     .about-bgd-image-container {
       display: none;
     }

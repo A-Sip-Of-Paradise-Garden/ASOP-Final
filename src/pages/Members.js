@@ -5,6 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { db } from "../config/firebase";
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import Button from "../components/Button";
+import { ageFromDateOfBirth } from "../helpers/stringUtils";
 
 const MembersPage = () => {
   const [textFilter, setTextFilter] = useState("");
@@ -18,7 +19,7 @@ const MembersPage = () => {
       setUserProfiles(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getUserProfiles();
-  }, [usersCollectionRef]);
+  }, []);
 
   const filteredUserProfiles = userProfiles.filter((userProfile) => {
     const { name, id } = userProfile;
@@ -95,7 +96,7 @@ const MembersPage = () => {
 };
 
 const UserCard = ({ userProfile }) => {
-  const { id, name, age, dateOfBirth, phoneNumber, memberUntil, isAdmin } =
+  const { id, name, dateOfBirth, phoneNumber, memberUntil, isAdmin } =
     userProfile;
 
   const [toggle, setToggle] = useState(false);
@@ -138,18 +139,25 @@ const UserCard = ({ userProfile }) => {
       {toggle && (
         <>
           <div className="grid grid-cols-2">
-            <UserInfo label="Age" value={age} />
+            <UserInfo label="Age" value={ageFromDateOfBirth(dateOfBirth)} />
             <UserInfo label="Date of Birth" value={dateOfBirth} />
             <UserInfo label="Phone Number" value={phoneNumber} />
             <EditableUserInfo
               label="Member Until"
+              property="memberUntil"
               value={memberUntil}
               userId={id}
             />
             <UserInfo label="User ID" value={id} />
+            <EditableUserInfo
+              label="Admin"
+              property="isAdmin"
+              value={isAdmin}
+              userId={id}
+            />
           </div>
           <Button
-            className="ml-auto w-fit"
+            className="mt-2 ml-auto w-fit"
             color="red"
             onClick={(e) => {
               e.stopPropagation();
@@ -173,14 +181,16 @@ const UserInfo = ({ label, value }) => {
   );
 };
 
-const EditableUserInfo = ({ label, value, userId }) => {
+const EditableUserInfo = ({ label, value, property, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
+  let inputComponent;
+  let displayValue;
 
   const updateEditValue = async () => {
     try {
       await updateDoc(doc(db, "user-profiles", userId), {
-        memberUntil: editValue,
+        [property]: editValue,
       });
       setIsEditing(false);
       window.location.reload();
@@ -189,18 +199,40 @@ const EditableUserInfo = ({ label, value, userId }) => {
     }
   };
 
+  switch (property) {
+    case "memberUntil":
+      inputComponent = (
+        <input
+          type="date"
+          className="w-full border-2 rounded py-2 px-2"
+          value={editValue}
+          onChange={(e) => setEditValue(e.target.value)}
+        />
+      );
+      displayValue = value;
+      break;
+    case "isAdmin":
+      inputComponent = (
+        <input
+          type="checkbox"
+          className="ml-auto border-2 rounded accent-emerald-500 h-5 w-5"
+          checked={editValue}
+          onChange={(e) => setEditValue((s) => !s)}
+        />
+      );
+      displayValue = `${value}`;
+      break;
+    default:
+      break;
+  }
+
   return (
     <div className="flex flex-col">
       <span className=" font-bold">{label}</span>
       <div className="flex justify-between w-full">
         {isEditing ? (
           <div className="flex flex-col w-full gap-2">
-            <input
-              type="date"
-              className="w-full border-2 rounded py-2 px-2"
-              value={value}
-              onChange={(e) => setEditValue(e.target.value)}
-            />
+            {inputComponent}
             <div className="flex gap-2">
               <Button
                 className={"max-w-[8rem]"}
@@ -222,7 +254,7 @@ const EditableUserInfo = ({ label, value, userId }) => {
           </div>
         ) : (
           <>
-            <span>{value}</span>
+            <span>{displayValue}</span>
             <button
               className="rounded hover:bg-emerald-400"
               type="button"
