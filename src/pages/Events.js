@@ -120,6 +120,7 @@ const EventsPage = () => {
        const adjustedEndDate = addDays(newEvent.endDate, 1);
        setAllEvents([...allEvents, { ...newEvent, endDate: adjustedEndDate, }]);
        clearEventData();
+       window.location.reload();
 
      } catch (err) {
        console.error(err);
@@ -240,7 +241,7 @@ const EventsPage = () => {
 
  return (
    <div className="events-calendar-page">
-       <h1 className="text-5xl font-bold">Events</h1>
+       <h1 className="title-calendar">Events</h1>
      <div className="title-and-inputs">
        <div className="title-and-button">
          {!formVisible && isAdminUser && (
