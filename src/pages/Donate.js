@@ -18,7 +18,7 @@ const DonationPage = () => {
 
   return (
     <div className="flex flex-col items-center text-center gap-4">
-      <h1 className="text-4xl font-bold">Donate</h1>
+      <h1 className="text-5xl font-bold">Donate</h1>
       <p className="max-w-xl">
         Your support and contributions will enable us to meet our vision for
         bartenders to grow food, herbs, and flowers for themselves and their
@@ -58,7 +58,7 @@ const DonationPage = () => {
             <DonationCard
               src={creditCard}
               alt="Credit Card"
-              description="Credit Card"
+              description="Credit / Debit Card"
               button={true}
             />
           </button>
