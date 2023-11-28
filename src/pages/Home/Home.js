@@ -1,3 +1,4 @@
+import { auth } from "../../config/firebase";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
