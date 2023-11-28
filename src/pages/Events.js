@@ -240,7 +240,9 @@ const EventsPage = () => {
 
  return (
    <div className="events-calendar-page">
-       <h1 className="text-5xl font-bold">Events</h1>
+     <div className="title-calendar">
+       <h1 className="calendar-title">Events</h1>
+     </div>
      <div className="title-and-inputs">
        <div className="title-and-button">
          {!formVisible && isAdminUser && (

@@ -13,7 +13,7 @@ const Contact = () => {
 
     return (
       <div className="flex flex-col items-center text-center gap-4">
-      <h1 className="text-5xl font-bold">Contact Us</h1>
+      <h1 className="primary-heading">Contact Us</h1>
         Send us an email, follow us on social media, or get directions!
       
       <div className="grid grid-cols-3 grid-rows-1 gap-4 border-2 border-emerald-400 rounded-xl p-4">
