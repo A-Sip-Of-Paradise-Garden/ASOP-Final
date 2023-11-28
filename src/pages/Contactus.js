@@ -1,4 +1,5 @@
 import React from "react";
+
 import email from "../assets/contact/email.png";
 import facebook from "../assets/contact/fb.png";
 import instagram from "../assets/contact/ig.png";
@@ -11,7 +12,10 @@ const Contact = () => {
   const instagramLink =
   "https://www.instagram.com/Asipofparadisegarden";
 
+
+const Contact = () => {
     return (
+
       <div className="flex flex-col items-center text-center gap-4">
       <h1 className="text-5xl font-bold">Contact Us</h1>
         Send us an email, follow us on social media, or get directions!
@@ -69,27 +73,10 @@ const Contact = () => {
           style={{border:"0"}} 
           allowfullscreen="" 
           loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </div>
-    </div>
-  );
-};
-
-const ContactCard = ({ src, alt, description, button = false }) => {
-  return (
-    <div
-      className={`flex flex-col overflow-normal border rounded-xl py-2 px-4 items-center gap-2 h-full justify-center ${
-        button ? "hover:bg-slate-100" : ""
-      }`}
-    >
-      <img src={src} alt={alt} className="max-w-[10rem] px-2" />
-      <p className={`${button ? "hidden" : ""} sm:block text-sm sm:text-base`}>
-        {description}
-      </p>
-    </div>
-  );
-};
-
+        r eferrerpolicy="no-referrer-when-downgrade"
+      ></iframe></p>
+      </div>
+    )
+  }
   
   export default Contact;
