@@ -1,3 +1,4 @@
+import { auth } from "../../config/firebase";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,10 +28,9 @@ const Home = () => {
   
   return (
     <div>
-
+      <h1>Current User: {auth?.currentUser?.uid}</h1>
       <div className="home-banner-container">
-        <div className="home-bannerImage-container" style={{ marginTop: "24px" }}>
-          
+        <div className="home-bannerImage-container">
           <img src={home_banner_bgd} alt="" />
         </div>
 

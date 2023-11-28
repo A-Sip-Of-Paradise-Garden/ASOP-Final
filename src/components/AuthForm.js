@@ -22,7 +22,7 @@ const AuthForm = () => {
 
   return (
     <div className="flex flex-col items-center w-full max-w-sm mx-auto gap-4">
-      <h1 className="text-5xl font-bold">{routeName}</h1>
+      <h1 className="text-2xl font-bold">{routeName}</h1>
       <form
         className="flex flex-col w-full items-center gap-4"
         onSubmit={onSubmitHandler}
