@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div>
       <div className="home-banner-container">
-        <div className="home-bannerImage-container">
+        <div className="home-bannerImage-container" style={{ marginTop: "24px"}}>
           <img src={home_banner_bgd} alt="" />
         </div>
 
