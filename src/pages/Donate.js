@@ -58,7 +58,7 @@ const DonationPage = () => {
             <DonationCard
               src={creditCard}
               alt="Credit Card"
-              description="Credit Card"
+              description="Credit / Debit Card"
               button={true}
             />
           </button>
