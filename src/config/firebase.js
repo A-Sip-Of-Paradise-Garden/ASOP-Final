@@ -3,14 +3,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// ASOP Draft
 const firebaseConfig = {
-  apiKey: "AIzaSyACLrwV5qyCBr1OIKg4WeG91LG_uceTKTQ",
-  authDomain: "asop-test.firebaseapp.com",
-  projectId: "asop-test",
-  storageBucket: "asop-test.appspot.com",
-  messagingSenderId: "460234170888",
-  appId: "1:460234170888:web:c9b5a3d1f5535de04227bd"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
