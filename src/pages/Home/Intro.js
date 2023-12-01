@@ -33,12 +33,13 @@ const Intro = () => {
                 </p>
                 <h1 className="primary-heading">Mission</h1>
                 <p className="primary-text">
-                    A Sip of Paradise is a nonprofit bartenders' community garden.
+                    A Sip of Paradise Garden provides horticultural therapy, employment resources, and health and wellness programs 
+                    for bartenders and the greater hospitality community to recharge their minds, bodies and spirits.
                 </p>
                 <h1 className="primary-heading">Vision</h1>
                 <p className="primary-text">
-                    A Sip of Paradise Garden provides horticultural therapy, employment resources, and health and wellness programs
-                    for bartenders and the greater hospitality community to recharge their minds, bodies, and spirits.
+                    We envision a community of hospitality professionals that will maintain economic independence and access to 
+                    sustainable food sources to help transform their wellness and improve their quality of life.
                 </p>
                 <h1 className="primary-heading">Values</h1>
                 <p className="secondary-text">
