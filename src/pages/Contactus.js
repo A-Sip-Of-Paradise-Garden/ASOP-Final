@@ -72,6 +72,7 @@ const Contact = () => {
           referrerpolicy="no-referrer-when-downgrade"
       ></iframe>
     </div>
+    <div className="bottom-space"></div>
     </div>
   );
 };
