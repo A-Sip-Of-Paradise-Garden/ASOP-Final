@@ -75,6 +75,7 @@ const DonationPage = () => {
         <DonationItem src={volunteers} alt="Volunteers" description="$500 Volunteer Day" />
         <DonationItem src={calendar} alt="Calendar" description="$4,500 Full Month of Programming" />
       </div>
+      <div className="bottom-space"></div>
     </div>
   );
 };
