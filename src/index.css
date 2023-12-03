@@ -7,203 +7,194 @@ box-sizing: border-box;
 }
 
 html, body, #root {
-height: 100%;
-width: 100%;
-margin: 0;
-padding: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .title-and-inputs {
-display: flex;
-justify-content: center;
-position: relative;
-z-index: 9999;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 9999;
 }
 
 .title-calendar {
-text-align: center;
-color: #38d49c;
-font-size: 70px;
-font-weight: bold;
+    text-align: center;
+    color: black;
+    font-size: 70px;
+    font-weight: bold;
 }
 
 .add-event-button {
-border-radius: 5px;
-border: 3px solid #38d49c;
-width: 150px;
-font-size: 14px;
-background-color: #B2FFBF;
-color: #38d49c;
-font-weight: bold;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    background-color: #38d49c;
+    color: black;
+    font-weight: bold;
 }
 
 .add-event-button:hover {
-border: 3px solid #2eaf81;
-color: #2eaf81;
+    background-color: #2eaf81;
 }
 
 .add-event-input {
-border: 1px solid black;
-width: 400px;
-margin-bottom: 10px;
-padding-left: 5px;
+    border: 1px solid black;
+    width: 400px;
+    margin-bottom: 10px;
+    padding-left: 5px;
 }
 
 .add-event-description {
-border: 1px solid black;
-width: 400px;
-margin-bottom: 10px;
-padding-left: 5px;
+    border: 1px solid black;
+    width: 400px;
+    margin-bottom: 10px;
+    padding-left: 5px;
 }
 
 .event-capacity {
-border: 1px solid black;
-width: 400px;
-margin-bottom: 10px;
-padding-left: 5px;
+    border: 1px solid black;
+    width: 400px;
+    margin-bottom: 10px;
+    padding-left: 5px;
 }
 
 .add-event-startdate {
-border: 1px solid black;
-width: 198px;
-height: 29px;
-margin-right: 5px;
-margin-bottom: 10px;
-padding-left: 5px;
+    border: 1px solid black;
+    width: 198px;
+    height: 29px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    padding-left: 5px;
 }
 
 .add-event-enddate {
-border: 1px solid black;
-width: 198px;
-height: 29px;
-margin-right: 5px;
-margin-bottom: 10px;
-padding-left: 5px;
+    border: 1px solid black;
+    width: 198px;
+    height: 29px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    padding-left: 5px;
 }
 
 .add-event-starttime {
-width: 197px;
+    width: 197px;
 }
 
 .add-event-endtime {
-width: 197px;
+    width: 197px;
 }
 
 .event-buttons {
-display: flex;
-justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .add-button {
-border-radius: 5px;
-border: 3px solid #38d49c;
-background-color: #B2FFBF;
-color: #38d49c;
-font-weight: bold;
-width: 71px;
-margin-right: 10px;
+    border-radius: 5px;
+    width: 71px;
+    height: 30px;
+    font-size: 14px;
+    background-color: #38d49c;
+    color: black;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .add-button:hover {
-border: 3px solid #2eaf81;
-color: #2eaf81;
+    background-color: #2eaf81;
 }
 
 .cancel-button {
-border-radius: 5px;
-border: 3px solid #e64444;
-background-color: #FFB569;
-color: #e64444;
-font-weight: bold;
-width: 71px;
+    border-radius: 5px;
+    background-color: #e64444;
+    color: black;
+    font-weight: bold;
+    width: 71px;
 }
 
 .cancel-button:hover {
-border: 3px solid #cf1b1b;
-color: #cf1b1b;
+    background-color: #cf1b1b;
 }
 
 .events-delete-button {
-border-radius: 5px;
-border: 3px solid #e64444;
-width: 70px;
-color: #e64444;
-font-weight: bold;
-background-color: #FFB569;
-margin-top: 10px;
+    border-radius: 5px;
+    width: 70px;
+    color: black;
+    font-weight: bold;
+    background-color: #e64444;
+    margin-top: 10px;
 }
 
 .events-delete-button:hover {
-border: 3px solid #cf1b1b;
-color: #cf1b1b;
+    background-color: #cf1b1b;
 }
 
 .events-rsvp-button {
-border-radius: 5px;
-border: 3px solid #38d49c;
-width: 80px;
-color: #38d49c;
-font-weight: bold;
-background-color: #B2FFBF;
-margin-top: 10px;
-margin-right: 5px;
+    border-radius: 5px;
+    width: 80px;
+    color: black;
+    font-weight: bold;
+    background-color: #38d49c;
+    margin-top: 10px;
+    margin-right: 5px;
 }
 
 .events-rsvp-button:hover {
-border: 3px solid #2eaf81;
-color: #2eaf81;
+    background-color: #2eaf81;
 }
 
 .events-cancelrsvp-button {
-border-radius: 5px;
-border: 3px solid #e64444;
-width: 100px;
-color: #e64444;
-font-weight: bold;
-background-color: #FFB569;
-margin-top: 10px;
-margin-right: 5px;
+    border-radius: 5px;
+    width: 100px;
+    color: black;
+    font-weight: bold;
+    background-color: #e64444;
+    margin-top: 10px;
+    margin-right: 5px;
 }
 
 .events-cancelrsvp-button:hover {
-border: 3px solid #cf1b1b;
-color: #cf1b1b;
+    background-color: #cf1b1b;
 }
 
 .calendar-event-returns {
-font-size: 5px;
+    font-size: 5px;
 }
 
 .start-div {
-display: flex;
+    display: flex;
 }
 
 .end-div {
-display: flex;
+    display: flex;
 }
 
 .add-event-starttime {
-height: 30px;
+    height: 30px;
 }
 
 .add-event-endtime {
-height: 30px;
+    height: 30px;
 }
 
 .rbc-calendar {
-z-index: 1;
-overflow-y: scroll;
+    z-index: 1;
+    overflow-y: scroll;
 }
 
 .rbc-event {
-height: 30px;
-overflow: hidden;
+    height: 30px;
+    overflow: hidden;
 }
 
 .nonmember-message {
- text-align: center;
- color: green;
- font-weight: bold;
+    text-align: center;
+    color: green;
+    font-weight: bold;
 }
 
 .bottom-space {

@@ -121,7 +121,8 @@ const getEventList = async () => {
 
 
 const handleAddEvent = async () => {
-  if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime) {
+  if (!newEvent.title || !newEvent.startDate || !newEvent.endDate || !newEvent.startTime || !newEvent.endTime || !newEvent.maxCapacity) {
+    alert("Please fill out all required fields!")
     return;
   } else {
     try {
@@ -251,7 +252,7 @@ const handleCancelRSVP = async (event) => {
      }));
    }
 
-   persistRSVPState(event.id, true);
+   persistRSVPState(event.id, false);
 
  } catch (err) {
    console.error(err);
