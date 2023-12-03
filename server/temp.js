@@ -11,7 +11,8 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-sgMail.setApiKey('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');
+// sgMail.setApiKey('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');
+sgMail.setApiKey('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');
 
 app.use(cors());
 app.use(express.json()); 
