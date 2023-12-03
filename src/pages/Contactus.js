@@ -47,10 +47,10 @@ const Contact = () => {
   );
 };
 
-const SocialMediaLink = ({ url, imageSrc, altText, text, isEmail = false }) => {
+const SocialMediaLink = ({ url, imageSrc, altText, text }) => {
   return (
     <a
-      href={"mailto:asipofparadisegarden@gmail.com"}
+      href={url}
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center gap-2 border border-black rounded-xl max-w-[10rem] w-full justify-center hover:bg-slate-100"
