@@ -138,7 +138,7 @@ const UserCard = ({ userProfile }) => {
       </div>
       {toggle && (
         <>
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-2 gap-2">
             <UserInfo label="Age" value={ageFromDateOfBirth(dateOfBirth)} />
             <UserInfo label="Date of Birth" value={dateOfBirth} />
             <UserInfo label="Phone Number" value={phoneNumber} />
@@ -175,8 +175,8 @@ const UserCard = ({ userProfile }) => {
 const UserInfo = ({ label, value }) => {
   return (
     <div className="flex flex-col">
-      <span className=" font-bold">{label}</span>
-      <span>{value}</span>
+      <span className="font-bold">{label}</span>
+      <span className="overflow-auto">{value}</span>
     </div>
   );
 };
