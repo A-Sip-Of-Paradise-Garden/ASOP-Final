@@ -284,7 +284,7 @@ const formatTime = (time) => {
 
 return (
   <div className="events-calendar-page">
-      <h1 className="title-calendar">Events</h1>
+      <h1 className="text-5xl font-bold mb-4">Events</h1>
       {!userProfile && (
        <div className="nonmember-message">Please Login or Signup to see Events</div>
       )}
