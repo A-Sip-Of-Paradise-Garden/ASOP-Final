@@ -22,6 +22,25 @@
  
 - Make sure to grab the secret key file from the ASOP-Test Firestore if you're going to be testing the Stripe dues payment feature
   1. It can be located [here.](https://console.cloud.google.com/iam-admin/serviceaccounts/details/113165166929441828383/keys?project=asop-test&supportedpurview=project)
+ 
+# Install Guide:
+
+1. Request victorhugobatistela@gmail.com permission to join the following GitHub repository: https://github.com/A-Sip-Of-Paradise-Garden/ASOP-Final  
+2. Once permission is granted, clone or download the code to your local machine. 
+3. Open the code using your choice of IDE. 
+4. Run “npm install” to install all dependencies. 
+5. Create a .env file outside the src folder. This file should be in the same folder hierarchy as the src and public folder. 
+6. In the .env file, you will need to add the following firebase credentials: 
+- REACT_APP_API_KEY="" 
+- REACT_APP_AUTH_DOMAIN="" 
+- REACT_APP_PROJECT_ID="" 
+- REACT_APP_STORAGE_BUCKET="" 
+- REACT_APP_MESSAGING_SENDER_ID="" 
+- REACT_APP_APP_ID="" 
+7. You can find these credentials once you log in to firebase using the credentials you find under “Firebase” in the "Customer Release Document". 
+- Note: do not use the credentials from asop-production as this is the server used to run the production app, and you do not want to modify the actual customer data. Create or use any other server instance when developing. 
+8. Run “npm start” to start your development server. 
+9. Access the website at http://localhost:3000/  
 
 # Release Notes:
 
