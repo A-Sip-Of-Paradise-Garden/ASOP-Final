@@ -25,6 +25,18 @@
 
 # Release Notes:
 
+## v0.5
+### Features
+ - Implemented SendGrid API for email notifications.
+ - Implemented Stripe webhook for payment authentication to maintain security.
+ - Redesigned donation page
+ - Redesigned members page
+ - Added partners to home page
+### Bug Fixes
+- Various UI bug fixes
+### Known Issues
+N/A
+
 ## v0.4
 ### Features
   - New notifications property added to user profiles.
