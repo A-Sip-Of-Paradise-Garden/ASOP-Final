@@ -42,13 +42,13 @@ const Intro = () => {
                     sustainable food sources to help transform their wellness and improve their quality of life.
                 </p>
                 <h1 className="primary-heading">Values</h1>
-                <p className="secondary-text">
+                <p className="primary-text">
                     - To improve the mental and physical health of members through wellness and wraparound support
                 </p>
-                <p className="secondary-text">
+                <p className="primary-text">
                     - To stabilize and empower members and their families through socio-economic growth and development
                 </p>
-                <p className="secondary-text">
+                <p className="primary-text">
                     - To strengthen the hospitality community through outdoor gardening and beautification for the betterment of the overall Atlanta metropolitan area
                 </p>
             </div>

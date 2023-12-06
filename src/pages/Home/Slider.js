@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 
 import ImageSlider from "./ImageSlider";
 
+import members_bgd from "../../assets/home/about_bgd.png";
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -34,14 +36,19 @@ const Slider = () => {
   ];
 
   const containerStyles = {
-    width: "1280px",
-    height: "720px",
-    margin: "3rem",
+    width: "1080px",
+    height: "600px",
     maxWidth: "100%",
+    maxHeight: "100%",
+    justifyContent: "center",
   };
 
   return (
     <div className="slider-page" id="gallery" data-aos="zoom-in">
+      <div className="members-bgd-image-container">
+        <img src={members_bgd} alt="" />
+      </div>
+
       <div style={containerStyles}>
         <ImageSlider slides={slides} />
       </div>

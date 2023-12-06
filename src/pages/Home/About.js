@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import asop_Keyatta_img1 from "../../assets/home/asop_Keyatta_img1.png";
 import asop_Rori_img1 from "../../assets/home/asop_Rori_img1.png";
 import asop_Stephanie_img1 from "../../assets/home/asop_Stephanie_img1.png";
-import about_bgd from "../../assets/home/about_bgd.png";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -32,10 +31,6 @@ const About = () => {
     
     return (
         <div className="about-section-wrapper" id="aboutUs" data-aos="zoom-in">
-            <div className="about-bgd-image-container">
-                <img src={about_bgd} alt="" />
-            </div>
-
             <div className="about-section-top">
                 <h1 className="primary-heading">About Us</h1>
             </div>
