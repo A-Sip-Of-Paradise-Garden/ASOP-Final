@@ -24,7 +24,7 @@ const DonationPage = () => {
         bartenders to grow food, herbs, and flowers for themselves and their
         families to help transform their wellness and happiness.
       </p>
-      <div className="grid grid-cols-2 grid-rows-2 gap-4 border-2 border-emerald-400 rounded-xl p-4">
+      <div className="grid grid-cols-1 grid-rows-1 sm:grid-cols-2 sm:grid-rows-2 w-full sm:w-fit gap-4 border-2 border-emerald-400 rounded-xl p-4">
         <DonationCard
           src={venmoImage}
           alt="Venmo"
@@ -80,15 +80,15 @@ const DonationPage = () => {
   );
 };
 
-const DonationCard = ({ src, alt, description, button = false }) => {
+const DonationCard = ({ src, alt, description, button }) => {
   return (
     <div
-      className={`flex flex-col overflow-normal border rounded-xl py-2 px-4 items-center gap-2 h-full justify-center ${
+      className={`flex flex-col overflow-normal border rounded-xl py-2 px-4 items-center gap-2 justify-center h-20 ${
         button ? "hover:bg-slate-100" : ""
       }`}
     >
       <img src={src} alt={alt} className="max-w-[10rem] px-2" />
-      <p className={`${button ? "hidden" : ""} sm:block text-sm sm:text-base`}>
+      <p>
         {description}
       </p>
     </div>
