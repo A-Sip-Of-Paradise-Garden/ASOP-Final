@@ -110,18 +110,8 @@ body {
     font-size: 2rem;
 }
 /* This is the style for about us section. */
-.about-bgd-image-container {
-    position: absolute;
-    right: -150px;
-    max-width: 600px;
-    z-index: -2;
-}
 .about-section-wrapper {
     margin-top: 5rem;
-}
-.about-section-top p {
-    text-align: center;
-    max-width: 600px !important;
 }
 .about-section-top h1 {
     max-width: 700px !important;
@@ -134,7 +124,7 @@ body {
 }
 .about-section-info {
     width: 300px;
-    min-height: 350px;
+    min-height: 425px;
     background-color: #56d48e;
     padding: 1rem 2rem;
     display: flex;
@@ -191,6 +181,55 @@ body {
     outline: none;
     font-size: 1.3rem;
     padding: 0.5rem 1rem;
+}
+/* This is the style for the Partner section */
+.partner-logos-wrapper {
+  margin-top: 5rem;
+}
+.partner-text h1 {
+  max-width: 700px !important;
+}
+.partner-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.logo-boxes-img-container {
+  max-width: 150px;
+}
+.logo-section-info {
+  width: 300px;
+  min-height: 260px;
+  background-color: #56d48e;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 1rem;
+  color: #505050;
+  margin: 1rem 2rem;
+}
+.logo-section-info h2 {
+  margin: 1.5rem 0rem;
+  font-weight: 600;
+  font-size: x-large;
+}
+.partner-logo {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* This is the style for the Members Slider section */
+.members-bgd-image-container {
+  position: absolute;
+  right: -150px;
+  max-width: 600px;
+  z-index: -2;
 }
 /* This is the style for the Footer section */
 .footer-wrapper {
@@ -314,9 +353,14 @@ body {
 /* Style for the images. */
 @media (max-width: 600px) {
     .home-bannerImage-container,
-    .intro-bgd-image-container,
-    .about-bgd-image-container {
+    .intro-bgd-image-container{
       display: none;
     }
+}
+
+@media (max-width: 1281px) {
+  .members-bgd-image-container {
+    display: none;
+  }
 }
   
