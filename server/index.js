@@ -31,8 +31,8 @@ app.post('/create-donate-checkout-session', cors(), async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:3000/donation-payment-success`, // Change based on hosted url
-        cancel_url: `http://localhost:3000/`,  // Change based on hosted url
+        success_url: `http://http://45.79.199.14:3000/donation-payment-success`, // Change based on hosted url
+        cancel_url: `http://http://45.79.199.14:3000/`,  // Change based on hosted url
     });
 
     res.redirect(303, session.url);
@@ -49,8 +49,8 @@ app.post('/create-dues-checkout-session', cors(),async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:3000/dues-payment-success`, // Change based on hosted url
-        cancel_url: `http://localhost:3000/`,  // Change based on hosted url
+        success_url: `http://http://45.79.199.14:3000/dues-payment-success`, // Change based on hosted url
+        cancel_url: `http://http://45.79.199.14:3000/`,  // Change based on hosted url
         metadata: {userId}
     });
 
