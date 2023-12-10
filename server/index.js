@@ -49,8 +49,8 @@ app.post('/create-dues-checkout-session', cors(),async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `https://www.asop.site/dues-payment-success`, // Change based on hosted url
-        cancel_url: `https://www.asop.site`,  // Change based on hosted url
+        success_url: `https://www.asop.site/dues-payment-success`,
+        cancel_url: `https://www.asop.site`,
         metadata: {userId}
     });
 
@@ -89,8 +89,6 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (request, re
             });
 
             console.log("firestore worked?")
-
-
             break;
         default:
             console.log(`Unhandled event type ${event.type}`);
