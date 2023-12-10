@@ -51,7 +51,7 @@ const DonationPage = () => {
         </div>
         <form
           className="w-full h-full"
-          action="http://https://http://45.79.199.14:3000/create-donate-checkout-session"
+          action="http://45.79.199.14:3000/create-donate-checkout-session"
           method="POST"
         >
           <button className="w-full h-full">
