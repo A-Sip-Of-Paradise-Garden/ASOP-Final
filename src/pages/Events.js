@@ -78,7 +78,7 @@ const isAdminUser = userProfile && userProfile.isAdmin;
 
 const sendEmail = async (eventDetails) => {
   try {
-    const response = await fetch('http://localhost:3001/send-email', {
+    const response = await fetch('https://www.asop.site/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

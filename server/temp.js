@@ -6,7 +6,7 @@ const admin = require('firebase-admin');
 const app = express();
 const port = 3001;
 
-const serviceAccount = require('../asop-test-firebase-adminsdk-aq089-72f0b4df8c.json');
+const serviceAccount = require('../asop-production-66c17151862f.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
