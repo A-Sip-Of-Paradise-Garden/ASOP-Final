@@ -2,8 +2,6 @@
 const stripe = require('stripe')('sk_test_51NzCAnH1uLXX7HqDddON5TMYIMPilELy0YPFJCQn6ZG4Uu5gByy7z0pFbBC66RYZ8EOiv' +
     '9Rk2g4TtS1NRbyaHlwo00Z1z0YPaN');
 const express = require('express');
-const https = require('https');
-const fs = require('fs');
 const app = express();
 app.use(express.static('public'));
 const cors = require("cors")
