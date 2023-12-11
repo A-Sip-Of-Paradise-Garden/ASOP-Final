@@ -81,7 +81,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (request, re
             const db = getFirestore();
             const currentDate = new Date();
             const memberUntilDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1));
-	    const year = memberUntilDate.getFullYear();
+	          const year = memberUntilDate.getFullYear();
             const month = memberUntilDate.getMonth() + 1;
             const day = memberUntilDate.getDate();
             const memberUntilDateString = `${year}-${month}-${day}`;
