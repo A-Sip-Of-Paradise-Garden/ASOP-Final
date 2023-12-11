@@ -2,6 +2,8 @@
 const stripe = require('stripe')('sk_test_51NzCAnH1uLXX7HqDddON5TMYIMPilELy0YPFJCQn6ZG4Uu5gByy7z0pFbBC66RYZ8EOiv' +
     '9Rk2g4TtS1NRbyaHlwo00Z1z0YPaN');
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const app = express();
 app.use(express.static('public'));
 const cors = require("cors")
@@ -81,10 +83,13 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (request, re
             const db = getFirestore();
             const currentDate = new Date();
             const memberUntilDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1));
-
+	    const year = memberUntilDate.getFullYear();
+            const month = memberUntilDate.getMonth() + 1;
+            const day = memberUntilDate.getDate();
+            const memberUntilDateString = `${year}-${month}-${day}`;
             const userRef = db.collection('user-profiles').doc(userId);
             await userRef.update({
-                memberUntil: memberUntilDate,
+                memberUntil: memberUntilDateString,
                 duesPaid: true
             });
 
@@ -95,6 +100,6 @@ app.post('/webhook', express.raw({type: 'application/json'}), async (request, re
     }
     response.send();
 });
-app.listen( 4000, () => {
+app.listen(4000, () => {
     console.log("Sever is listening on port 4000")
 })

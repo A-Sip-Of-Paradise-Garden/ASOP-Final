@@ -51,7 +51,7 @@ const DonationPage = () => {
         </div>
         <form
           className="w-full h-full"
-          action="http://45.79.199.14:4000/create-donate-checkout-session"
+          action="https://asop.site/create-donate-checkout-session"
           method="POST"
         >
           <button className="w-full h-full">
