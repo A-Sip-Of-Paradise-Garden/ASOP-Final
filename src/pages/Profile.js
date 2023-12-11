@@ -52,7 +52,7 @@ const Profile = () => {
         </span>
       ) : (
         <form
-          action="http://localhost:4000/create-dues-checkout-session"
+          action="http://45.79.199.14:4000/create-dues-checkout-session"
           method="POST"
         >
           <input type="hidden" name="userId" value={user.uid} />
